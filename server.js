@@ -6,8 +6,8 @@ const
   logger = require('morgan'),
   mongoose = require('mongoose'),
   MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/general-assembly'
-  PORT = process.env.PORT || 3001
-//   userRoutes = require('./routes/users')
+  PORT = process.env.PORT || 3001,
+  userRoutes = require('./routes/users')
 //
 
 mongoose.connect(MONGODB_URI, (err) => {
