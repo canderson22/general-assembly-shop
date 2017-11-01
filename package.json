@@ -1,0 +1,21 @@
+{
+  "name": "ga-shop",
+  "version": "1.0.0",
+  "description": "A web app to shop and buy items from General Assembly",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Charles Anderson",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "4.10.8",
+    "morgan": "^1.9.0"
+  }
+}
