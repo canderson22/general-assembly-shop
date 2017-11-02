@@ -39,5 +39,16 @@ module.exports = {
             if(err) return console.log(err)
             res.json({success: true, msg: `deleted user ${user}`})
         })
+    },
+
+    authenticate: (req, res) => {
+        User.findOne({email: req.body.email}, (err, user) => {
+            if(!user || !user.validPassword(req.body.password)) {
+                return res.json({success: false, message: 'Invalid credentials'})
+            }
+
+            const token = signToken(user)
+            res.json({success: true, token})
+        })
     }
 }
