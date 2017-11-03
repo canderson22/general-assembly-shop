@@ -19,6 +19,10 @@ function verifyToken(req, res, next) {
     jwt.verify(token, process.env.JWT_SECRET, (err, decodedData) => {
         if(err) return res.json({success: false, message: 'Invalid Token!'})
 
+        if(req.params.id !== decodedData._id) {
+            return res.json({success: false, message: 'Out of bounds'})
+        }
+
         User.findById(decodedData._id, (err, user) => {
             if(!user) return res.json({success: false, message: 'Invalid Token'})
             req.user = user

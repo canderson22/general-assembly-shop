@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './registration.css'
+import { toast } from 'materialize-css'
+
 
 import { updateSignupFields } from '../../actions/registration'
 import { connect } from 'react-redux'
@@ -14,6 +16,33 @@ class Signup extends React.Component {
         })
     }
 
+    validateInputs(obj) {
+        if (obj.password !== obj.confirmation_password) {
+            toast(`<h5>Make sure passwords match</h5>`, 2000 ,'left rounded red-text')
+            return false
+        }
+        if (obj.phone) {
+            if (!/^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(obj.phone)) {
+                toast(`<h5>Incorrect phone number</h5>`, 2000 ,'left rounded red-text')
+                return false
+            }
+        }
+        if(!obj.f_name || !obj.l_name || !obj.password || !obj.email) {
+           toast(`<h5>Please fill in all required inputs</h5>`, 2000 ,'left rounded red-text')
+           return false
+        }
+        return true
+
+    }
+
+    onFormSubmit(e) {
+        e.preventDefault();
+        const fields = this.props.signupFields
+        if(this.validateInputs(fields)) {
+            console.log('made it')
+        }
+    }
+
     render() {
         const { f_name, l_name, email, phone, password, confirmation_password } = this.props.signupFields
         return (
@@ -21,7 +50,7 @@ class Signup extends React.Component {
             <h1>Sign Up</h1>
             
             <div className='row'>
-                <form className='col s12' onChange={this.onInputChange.bind(this)} >
+                <form className='col s12' onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)} >
                     <div className='row'>
                         <div className='input-field col s6'>
                             <i className='material-icons prefix'>account_circle</i>
@@ -43,7 +72,7 @@ class Signup extends React.Component {
                         <div className='input-field col s6'>
                             <i className='material-icons prefix'>phone</i>
                             <input type="tel" name='phone' value={phone} className='validate' />
-                            <label htmlFor='icon_prefix'>Phone (optional)</label>
+                            <label htmlFor='icon_prefix'>Phone (optional) xxx-xxx-xxxx</label>
                         </div>
                     </div>
                     <div className='row'>

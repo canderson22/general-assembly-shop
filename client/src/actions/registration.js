@@ -4,8 +4,8 @@ export function updateSignupFields(fields) {
     return { type: UPDATE_SIGNUP_FIELDS, payload: fields}
 }
 
-export const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT'
+export const REQUEST_SIGNUP = 'REQUEST_SIGNUP'
 
 export function signupSubmit(fields) {
-    return { type: SIGNUP_SUBMIT, payload: ''}
+    return { type: REQUEST_SIGNUP, payload: ''}
 }

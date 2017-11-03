@@ -12,7 +12,8 @@ module.exports = {
     create: (req, res) => {
         User.create(req.body, (err, user) =>{
             if(err) return res.json({success: false, error})
-            res.json({success: true, user})
+            const token = signToken(user)
+            res.json({success: true, token })
         })
     },
 
