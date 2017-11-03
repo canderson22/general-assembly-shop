@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import './navbar.css'
 import gaLogo from '../images/general-assembly-logo.png'
 
 class Navbar extends Component {
-    state = {
-        currentUser: null
-    }
+ 
     render() {
+        console.log(this.props)
         return (
             <nav className='Navbar white text-black'>
                 <div className='nav-wrapper'>
@@ -17,13 +17,14 @@ class Navbar extends Component {
                     </div>
                     <a data-activates="mobile-demo" className="button-collapse right"><i className="material-icons">menu</i></a>
                     {
-                        this.state.currentUser
+                        this.props.user
                         ? (
                             <span>
                             <ul id="nav-mobile" className="left hide-on-med-and-down">
                                 <li><Link to='/'>Home</Link></li>
                                 <li><Link to='/shop'>Shop</Link></li>
                                 <li><Link to='/'>About</Link></li>
+                                <li><Link to='/logout'>Log out</Link></li>
                             </ul>
                             <form className='right red hide-on-med-and-down'>
                                 <div className="input-field">
@@ -54,4 +55,6 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+const mapStateToProps = ({ user }) => ({ user })
+
+export default connect(mapStateToProps)(Navbar);
