@@ -1,0 +1,29 @@
+.nav-wrapper .col {
+    height: 100%;
+}
+.brand-logo {
+    height: 100%;
+    position: inherit !important;
+    float: left;
+}
+
+.brand-logo img {
+    height: 100%;
+}
+
+#nav-mobile li a {
+    color: black;
+}
+
+#search:focus {
+    border-bottom: 1px solid red;
+    box-shadow: 0 1px 0 0 red;
+}
+
+.button-collapse i {
+    color: red !important;
+}
+
+.side-nav li img {
+    width: 100%;
+}

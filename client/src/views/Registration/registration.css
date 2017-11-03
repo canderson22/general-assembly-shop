@@ -1,0 +1,45 @@
+input[type=text]:not(.browser-default):focus:not([readonly]) {
+    border-bottom:1px solid red !important;
+    box-shadow: 0 1px 0 0 red;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]) + label {
+    color: red;
+}
+
+input[type=email]:not(.browser-default):focus:not([readonly]) {
+    border-bottom:1px solid red !important;
+    box-shadow: 0 1px 0 0 red;
+}
+
+input[type=email]:not(.browser-default):focus:not([readonly]) + label {
+    color: red;
+}
+
+input[type=tel]:not(.browser-default):focus:not([readonly]) {
+    border-bottom:1px solid red !important;
+    box-shadow: 0 1px 0 0 red;
+}
+
+input[type=tel]:not(.browser-default):focus:not([readonly]) + label {
+    color: red;
+}
+
+input[type=password]:not(.browser-default):focus:not([readonly]) {
+    border-bottom:1px solid red !important;
+    box-shadow: 0 1px 0 0 red;
+}
+
+input[type=password]:not(.browser-default):focus:not([readonly]) + label {
+    color: red;
+}
+
+.input-field .prefix.active {
+    color: red;
+}
+
+#toast-container {
+    top: auto !important;
+    bottom: 30%;
+    right: 40%;
+  }
