@@ -7,7 +7,8 @@ const
   mongoose = require('mongoose'),
   MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/general-assembly'
   PORT = process.env.PORT || 3001,
-  userRoutes = require('./routes/users')
+  userRoutes = require('./routes/users'),
+  ProductRoutes = require('./routes/products')
 //
 
 mongoose.connect(MONGODB_URI, (err) => {
@@ -24,6 +25,7 @@ app.get('/api', (req, res) => {
 })
 
 app.use('/api/users', userRoutes)
+app.use('/api/products')
 
 app.listen(PORT, (err) => {
     console.log(err || `Listening on port 🔥 ${PORT}`)

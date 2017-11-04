@@ -43,6 +43,8 @@ class Signup extends React.Component {
         const fields = this.props.signup.fields
         if(this.validateInputs(fields)) {
             this.props.userSignin(fields, () => {
+                this.props.updateSignupFields({fields: {}})
+                this.props.userSigninFailure('')
                 this.props.history.push('/')
             }, (err) => {
                 this.props.userSigninFailure(err)

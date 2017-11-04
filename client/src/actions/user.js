@@ -59,16 +59,18 @@ export const USER_LOGIN = 'USER_LOGIN'
 export function userLogin(credentials, successCb, errorCb) {
     const request = clientAuth({
         method: 'post',
-        url:'/api/users/authenticate',
+        url:'/api/users/auth',
         data: credentials
     })
       .then(res => {
           if(res.data.success) {
+              const token = res.data.token
               clientAuth.defaults.headers.common.token = setToken(token)
               successCb()
               return jwtDecode(token)
           } else {
               const errorMsg = res.data.error
+              console.log(errorMsg)
               errorCb(errorMsg)
               return null
           }

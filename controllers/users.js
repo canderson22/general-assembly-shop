@@ -44,11 +44,13 @@ module.exports = {
     },
 
     authenticate: (req, res) => {
+        console.log(req.body.email)
         User.findOne({email: req.body.email}, (err, user) => {
             if(!user || !user.validPassword(req.body.password)) {
-                return res.json({success: false, message: 'Invalid credentials'})
+                console.log('no')
+                return res.json({success: false, error: 'Invalid credentials'})
             }
-
+            console.log('ok')
             const token = signToken(user)
             res.json({success: true, token})
         })
