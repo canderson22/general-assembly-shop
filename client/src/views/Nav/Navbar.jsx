@@ -8,7 +8,6 @@ import gaLogo from '../images/general-assembly-logo.png'
 class Navbar extends Component {
  
     render() {
-        console.log(this.props)
         return (
             <nav className='Navbar white text-black'>
                 <div className='nav-wrapper'>

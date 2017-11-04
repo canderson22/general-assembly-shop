@@ -30,3 +30,49 @@ export function userLogout() {
     delete clientAuth.defaults.headers.common.token
     return { type: USER_LOGOUT, payload: null}
 }
+
+// user sign up
+
+export const USER_SIGNIN = 'USER_SIGNIN'
+export function userSignin(credentials, successCb, errorCb) {
+    const request = clientAuth({
+        method: 'post',
+        url: '/api/users',
+        data: credentials
+    })
+      .then(res => {
+          if(res.data.success) {
+              const token = res.data.token
+              clientAuth.defaults.headers.common.token = setToken(token)
+              successCb()
+              return jwtDecode(token)
+          } else {
+              const errorMsg = res.data.error
+              errorCb(errorMsg)
+              return null
+          }
+      })
+      return { type: USER_SIGNIN, payload: request}
+}
+
+export const USER_LOGIN = 'USER_LOGIN'
+export function userLogin(credentials, successCb, errorCb) {
+    const request = clientAuth({
+        method: 'post',
+        url:'/api/users/authenticate',
+        data: credentials
+    })
+      .then(res => {
+          if(res.data.success) {
+              clientAuth.defaults.headers.common.token = setToken(token)
+              successCb()
+              return jwtDecode(token)
+          } else {
+              const errorMsg = res.data.error
+              errorCb(errorMsg)
+              return null
+          }
+      })
+      return { type: USER_LOGIN, payload: request } 
+}
+

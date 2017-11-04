@@ -4,5 +4,5 @@ import signupReducer from './signupReducer'
 
 export default combineReducers({
     user: userReducer,
-    signupFields: signupReducer
+    signup: signupReducer
 })

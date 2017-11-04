@@ -4,16 +4,19 @@ import './registration.css'
 import { toast } from 'materialize-css'
 
 
-import { updateSignupFields } from '../../actions/registration'
+import { updateSignupFields, userSigninFailure } from '../../actions/registration'
+import { userSignin } from '../../actions/user'
 import { connect } from 'react-redux'
 
 class Signup extends React.Component {
 
     onInputChange(e) {
         this.props.updateSignupFields({
-            ...this.props.signupFields,
+            ...this.props.signup.fields,
             [e.target.name]: e.target.value
         })
+        this.props.userSigninFailure('')
+        
     }
 
     validateInputs(obj) {
@@ -37,17 +40,28 @@ class Signup extends React.Component {
 
     onFormSubmit(e) {
         e.preventDefault();
-        const fields = this.props.signupFields
+        const fields = this.props.signup.fields
         if(this.validateInputs(fields)) {
-            console.log('made it')
+            this.props.userSignin(fields, () => {
+                this.props.history.push('/')
+            }, (err) => {
+                this.props.userSigninFailure(err)
+            })
         }
     }
 
     render() {
-        const { f_name, l_name, email, phone, password, confirmation_password } = this.props.signupFields
+        console.log(this.props.signup.errorMsg)
+        const { f_name, l_name, email, phone, password, confirmation_password } = this.props.signup.fields
+        const { errorMsg } = this.props.signup
         return (
             <div className='Signup container'>
             <h1>Sign Up</h1>
+            {
+                errorMsg
+                ? <div className='center-align alert-danger'>{errorMsg}</div>
+                : null
+            }
             
             <div className='row'>
                 <form className='col s12' onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)} >
@@ -106,6 +120,6 @@ class Signup extends React.Component {
     }
 }
 
-const mapStateToProps = ({signupFields}) => ({signupFields})
+const mapStateToProps = ({signup}) => ({signup})
 
-export default connect(mapStateToProps, { updateSignupFields })(Signup)
+export default connect(mapStateToProps, { updateSignupFields, userSignin, userSigninFailure })(Signup)

@@ -1,6 +1,7 @@
 const
     mongoose = require('mongoose'),
-    User = require('../models/User')
+    User = require('../models/User'),
+    signToken = require('../serverAuth').signToken
 
 module.exports = {
     index: (req, res) => {
@@ -10,8 +11,8 @@ module.exports = {
     },
 
     create: (req, res) => {
-        User.create(req.body, (err, user) =>{
-            if(err) return res.json({success: false, error})
+        User.create(req.body, (error, user) =>{
+            if(error) return res.json({success: false, error: 'Sorry that email is already taken!'})
             const token = signToken(user)
             res.json({success: true, token })
         })
