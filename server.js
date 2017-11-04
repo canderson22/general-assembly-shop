@@ -25,7 +25,7 @@ app.get('/api', (req, res) => {
 })
 
 app.use('/api/users', userRoutes)
-app.use('/api/products')
+app.use('/api/products', ProductRoutes)
 
 app.listen(PORT, (err) => {
     console.log(err || `Listening on port 🔥 ${PORT}`)
