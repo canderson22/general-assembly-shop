@@ -1,9 +1,14 @@
 import { ADD_TO_CART } from '../actions/cart'
 
+const defaultState = {
+    cartEmpty: true,
+    cart: []
+}
+
 function addToCart(state, newItem) {
-    var newState = []
-    if(state.findIndex(item => item._id === newItem._id) > -1) {
-        newState = state.map(item => {
+    var newCart = []
+    if(state.cart.findIndex(item => item._id === newItem._id) > -1) {
+        newCart = state.cart.map(item => {
             if(item._id === newItem._id) {
                 item.qty++
                 return item
@@ -11,15 +16,19 @@ function addToCart(state, newItem) {
             return item
         })
     } else {
-        newState = [
-            ...state,
+        newCart = [
+            ...state.cart,
             newItem
         ]
     }
+    var newState = Object.assign({}, state, {
+        cart: newCart,
+        cartEmpty: false
+    })
     return newState
 }
 
-export default (state=[], action) => {
+export default (state=defaultState, action) => {
     switch (action.type) {
         case ADD_TO_CART:
             return addToCart(state, action.payload)

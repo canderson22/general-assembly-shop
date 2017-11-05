@@ -25,6 +25,7 @@ class Navbar extends Component {
                                 <li><Link to='/'>About</Link></li>
                                 <li><Link to='/logout'>Log out</Link></li>
                             </ul>
+                             
                             <form className='right red hide-on-med-and-down'>
                                 <div className="input-field">
                                 <input id="search" type="search" placeholder='Search for items' />

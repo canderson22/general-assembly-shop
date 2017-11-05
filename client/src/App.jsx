@@ -9,6 +9,7 @@ import Logout from './views/Registration/Logout'
 import Signup from './views/Registration/Signup'
 import Login from './views/Registration/Login'
 import Products from './views/Products/Products'
+import CartSummary from './views/Helpers/cartSummary'
 
 class App extends React.Component {
 
@@ -20,7 +21,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav />
-        
+        <CartSummary />
         <Switch>
           <Route path='/signup' component={Signup} />
           <Route path='/login' component={Login} />
@@ -35,7 +36,8 @@ class App extends React.Component {
             return <Home {...props} />
           }} />
         </Switch>
-      </div>
+
+       </div>
     );
   }
 }
