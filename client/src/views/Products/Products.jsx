@@ -1,39 +1,18 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import './products.css'
+
 import Loading from '../Helpers/Loading'
 import Product from './Product'
-import blackBottle from './productImages/ga_black_bottle.png'
-import whiteBottle from './productImages/white_bottle.png'
-import red from './productImages/red_bottle.png'
 
+import { getProducts } from '../../actions/products'
 
 
 class Products extends Component {
-    state = { 
-        products: [
-            {
-                id: 1,
-                title: 'fo'
-            },
-            {
-                id: 2,
-                title: 'fo'
-            },
-            {
-                id: 3,
-                title: 'fo'
-            },
-            {
-                id: 4,
-                title: 'fo'
-            }
-        ]
-     }
-
+    
      componentDidMount() {
-         
-         
+         this.props.getProducts()
      }
 
      createProductMatrix(arr) {
@@ -51,7 +30,7 @@ class Products extends Component {
      }
 
     render() {
-        const products = this.createProductMatrix(this.state.products)
+        const products = this.createProductMatrix(this.props.products)
         
         return (
             <div className='Products'>
@@ -65,7 +44,7 @@ class Products extends Component {
                                     <div className='row' key={i}>
                                         {
                                             row.map(item => {
-                                                return <Product key={item.id} item={item} />
+                                                return <Product key={item._id} item={item} />
                                             })
                                         }
                                     </div>
@@ -80,4 +59,6 @@ class Products extends Component {
     }
 }
 
-export default Products
+const mapStateToProps = ({ products }) => ({ products })
+
+export default connect(mapStateToProps, { getProducts })(Products)

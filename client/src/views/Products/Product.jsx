@@ -1,19 +1,30 @@
 import React from 'react'
 
 export default (props) => {
+    const { item } = props
     return (
-            <div key={props.item.id} className='col s4'>
+            <div className='col s4'>
                 <div className="card">
                     <div className="card-image">
-                        <img src='' />
-                        <span className="card-title">Card Title</span>
+                        <img src={item.image} alt='' />
                     </div>
                     <div className="card-content">
-                    <p>I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.</p>
+                        <span className='card-title'>
+                            {item.title}
+                        </span>
+                        <p>
+                            {item.desc}
+                        </p>
                     </div>
                     <div className="card-action">
-                    <a href="/">This is a link</a>
+                        {
+                            item.color
+                            ? <span className='badge'>{item.color}</span>
+                            : null
+                        }
+                    <button className='waves-effect waves-dark btn red white-text'>
+                        <i className='material-icons right'>add_shopping_cart</i>Add to
+                    </button>
                     </div>
                 </div>
             </div>
