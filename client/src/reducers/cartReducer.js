@@ -1,37 +1,33 @@
-import { ADD_TO_CART } from '../actions/cart'
-
-const defaultState = {
-    cartEmpty: true,
-    cart: []
-}
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cart'
 
 function addToCart(state, newItem) {
-    var newCart = []
-    if(state.cart.findIndex(item => item._id === newItem._id) > -1) {
-        newCart = state.cart.map(item => {
+    if(state.find(item => item._id === newItem._id)) {
+        return state.map(item => {
             if(item._id === newItem._id) {
-                item.qty++
+                item.qty += newItem.qty
                 return item
             }
             return item
         })
     } else {
-        newCart = [
-            ...state.cart,
+        return [
+            ...state,
             newItem
         ]
     }
-    var newState = Object.assign({}, state, {
-        cart: newCart,
-        cartEmpty: false
-    })
+}
+
+function removeFromCart(state, id) {
+    var newState = state.filter(item => item._id !== id)
     return newState
 }
 
-export default (state=defaultState, action) => {
+export default (state=[], action) => {
     switch (action.type) {
         case ADD_TO_CART:
             return addToCart(state, action.payload)
+        case REMOVE_FROM_CART:
+            return removeFromCart(state, action.payload)
         default:
             return state
     }

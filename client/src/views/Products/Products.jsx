@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import './products.css'
 
 import Loading from '../Helpers/Loading'
+import CartSummary from '../Helpers/cartSummary'
 import Product from './Product'
 
 import { getProducts } from '../../actions/products'
@@ -34,6 +35,11 @@ class Products extends Component {
         
         return (
             <div className='Products'>
+                {
+                    this.props.cart.length > 0
+                    ? <CartSummary />
+                    : null
+                }
                 <h1>Products</h1>
                 <div className='container'>
                     {
@@ -59,6 +65,6 @@ class Products extends Component {
     }
 }
 
-const mapStateToProps = ({ products }) => ({ products })
+const mapStateToProps = ({ products, cart }) => ({ products, cart })
 
 export default connect(mapStateToProps, { getProducts })(Products)

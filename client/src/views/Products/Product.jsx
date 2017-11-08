@@ -5,14 +5,7 @@ import { addToCart } from '../../actions/cart'
 class Product extends React.Component {
 
     onAddItem(item) {
-        const { _id, title, color, price } = item
-        var newItem = {
-            _id,
-            title,
-            color,
-            price,
-            qty: 1
-        }
+        const newItem = Object.assign({}, item, {qty: 1})
         this.props.addToCart(newItem)
     }
 

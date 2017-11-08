@@ -1,43 +1,91 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { showCart } from '../../actions/helpers'
+import { removeFromCart } from '../../actions/cart'
 
 import './cartSummary.css'
 
 class CartSummary extends Component {
-    state = {
-        cart: true
+
+    onShowCart() {
+        this.props.showCart(!this.props.helpers.viewCart)
     }
 
-    onClick() {
-        this.setState({cart: true})
+    onRemoveFromCart(_id) {
+        this.props.removeFromCart(_id)
+    }
+
+    onCheckOut() {
+        
     }
     render() {
-        console.log(this.props.cart)
+        var { cart } = this.props
+        let total = 0
+        if(cart.length > 0) {
+            total = cart.map(item => item.qty * item.price).reduce((total, value) => total += value)
+        }
+        const { viewCart } = this.props.helpers
         return (
             <div>
-                {/* {
-                    this.props.cart.cartEmpty
-                    ? (
-                        <div className='cart'>
-                            <header className='cart-header red white-text'>
-                                <h4>Your Cart</h4>
-                                <button><i className='close material-icons'>close</i></button>
-                            </header>
-                            <div>
-                                <h1>hello</h1>
-                            </div>
-                            <footer>
-                                <button>Check out</button>
-                            </footer>
+            {
+                viewCart
+                ? (
+                    <div className='cart slide-in.from-right slide-in-content'>
+                    <div className='cart-header'>
+                        <div className='cart-title'>
+                            <h5>Summary</h5>
                         </div>
-                    )
-                    : <button onClick={this.onClick.bind(this)} className='btn btn-cart red darken-3'>View Cart</button>
-                } */}
-            </div>
+                        <div className='cart-close'>
+                            <button onClick={this.onShowCart.bind(this)} className='close'><i className='small material-icons'>close</i></button>
+                        </div>
+                    </div>
+                    <div>
+                        <table className='striped responsive-table'>
+                            <thead>
+                            <tr>
+                                <th className='center-align'>Item Name</th>
+                                <th className='center-align'>Item Price</th>
+                                <th className='center-align'>Quantity</th>
+                                <th className='center-align'>Price</th>
+                                <th>Remove</th>
+                            </tr>
+                            </thead>
+    
+                            <tbody>
+                            {
+                                cart.map(item => {
+                                    return (
+                                        <tr key={item._id}>
+                                            <td className='center-align'>{item.title} ({item.color})</td>
+                                            <td className='center-align'>{item.price}</td>
+                                            <td className='center-align'>{item.qty}</td>
+                                            <td className='center-align'>{item.qty * item.price}</td>
+                                            <td><button onClick={this.onRemoveFromCart.bind(this, item._id)} className='btn btn-remove red'><i className='tiny material-icons'>remove_shopping_cart</i></button></td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                            <tr>
+                                <td>
+                                    <Link onClick={this.onCheckOut.bind(this)} to='/checkout' className='btn orange lighten-1'>Check Out</Link>
+                                </td>
+                                <td className='left-align'>Total: ${total}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                )
+                : <button className='btn-cart btn red darken-3' onClick={this.onShowCart.bind(this)}>View Cart</button>
+            }
+        </div>
         );
     }
 }
 
-const mapStateToProps = ({ cart }) => ({ cart })
+const mapStateToProps = ({ cart, helpers }) => ({ cart, helpers })
 
-export default connect(mapStateToProps)(CartSummary)
+export default connect(mapStateToProps, { showCart, removeFromCart })(CartSummary)

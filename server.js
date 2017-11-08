@@ -1,6 +1,7 @@
 const
   dotenv = require('dotenv').load(),
   express = require('express'),
+  stripe = require('stripe')(process.env.STRIPE_SECRET),
   app = express(),
   bodyParser = require('body-parser'),
   logger = require('morgan'),
@@ -8,7 +9,8 @@ const
   MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/general-assembly'
   PORT = process.env.PORT || 3001,
   userRoutes = require('./routes/users'),
-  ProductRoutes = require('./routes/products')
+  ProductRoutes = require('./routes/products'),
+  orderRoutes = require('./routes/orders')
 //
 
 mongoose.connect(MONGODB_URI, (err) => {
@@ -26,6 +28,7 @@ app.get('/api', (req, res) => {
 
 app.use('/api/users', userRoutes)
 app.use('/api/products', ProductRoutes)
+app.use('/api/orders', orderRoutes)
 
 app.listen(PORT, (err) => {
     console.log(err || `Listening on port 🔥 ${PORT}`)

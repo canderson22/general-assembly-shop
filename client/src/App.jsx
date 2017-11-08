@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getCurrentUser } from './actions/user'
 
@@ -9,7 +9,8 @@ import Logout from './views/Registration/Logout'
 import Signup from './views/Registration/Signup'
 import Login from './views/Registration/Login'
 import Products from './views/Products/Products'
-import CartSummary from './views/Helpers/cartSummary'
+import Checkout from './views/Checkout'
+import Order from './views/Order'
 
 class App extends React.Component {
 
@@ -21,12 +22,25 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav />
-        <CartSummary />
+        
         <Switch>
           <Route path='/signup' component={Signup} />
           <Route path='/login' component={Login} />
 
           <Route path='/shop' component={Products} />
+          <Route path='/checkout' render={(props) => {
+            if(this.props.cart.length > 0) {
+              return <Checkout {...props} />
+            }
+            return <Redirect to='/shop' />
+          }} />
+
+          <Route path='/order' render={(props) => {
+            // if(this.props.cart.lenth > 0) {
+              return <Order {...props} />
+            // } 
+            // return <Redirect to='/shop' />
+          }} />
   
           <Route path='/logout' render={(props) => {
             return <Logout {...props} />
@@ -42,6 +56,6 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({ user })
+const mapStateToProps = ({ user, cart }) => ({ user, cart })
 
 export default withRouter(connect(mapStateToProps, { getCurrentUser })(App));
