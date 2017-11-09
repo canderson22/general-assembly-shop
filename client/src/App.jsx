@@ -35,7 +35,7 @@ class App extends React.Component {
             return <Redirect to='/shop' />
           }} />
 
-          <Route path='/order' render={(props) => {
+          <Route path='/completeOrder' render={(props) => {
             // if(this.props.cart.lenth > 0) {
               return <Order {...props} />
             // } 

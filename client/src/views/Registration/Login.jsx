@@ -13,6 +13,16 @@ class Login extends Component {
          })
      }
 
+     componentWillUnmount() {
+         this.props.updateSignupFields({
+            f_name: '',
+            l_name: '',
+            email: '',
+            password: '',
+            confirmation_password: '',
+            phone: ''
+         })
+     }
 
      onFormSubmit(e) {
         e.preventDefault()

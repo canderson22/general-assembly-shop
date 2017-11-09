@@ -1,25 +1,16 @@
 const 
     express = require('express'),
     orderRouter = new express.Router(),
-    stripe = require('../stripe')
+    orderCtrl = require('../controllers/orders')
 //
 
-orderRouter.get('/paymentSuccess', (req, res) => {
 
-})
+orderRouter.route('/')
+  .get(orderCtrl.index)
+  .post(orderCtrl.create)
+//
 
-const postStripeCharge = res => (stripeErr, stripeRes) => {
-  if (stripeErr) {
-      console.log('no')
-    res.status(500).send({ error: stripeErr });
-  } else {
-      console.log('ok')
-    res.status(200).send({ success: stripeRes });
-  }
-}
+orderRouter.post('/charge', orderCtrl.charge)
 
-orderRouter.post('/charge', (req, res) => {
-    stripe.charges.create(req.body, postStripeCharge(res))
-})
 
 module.exports = orderRouter

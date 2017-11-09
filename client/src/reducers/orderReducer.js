@@ -1,18 +1,17 @@
-import { UPDATE_ORDER_FIELDS } from '../actions/order'
+import { PROCESS_PAYMENT, COMPLETE_ORDER } from '../actions/order'
+
 
 const defaultState = {
-    fields: {
-        address1: '',
-        address2: '',
-        city: '',
-        zipcode: ''
-    }
+  processPayment: false,
+  order: null
 }
 
 export default (state=defaultState, action) => {
     switch (action.type) {
-        case UPDATE_ORDER_FIELDS:
-            return Object.assign({}, state, {fields: action.payload})
+        case PROCESS_PAYMENT:
+            return Object.assign({}, state, {processPayment: action.payload})
+        case COMPLETE_ORDER:
+            return Object.assign({}, state, { order: action.payload})
         default:
             return state
     }

@@ -8,12 +8,14 @@ import CartSummary from '../Helpers/cartSummary'
 import Product from './Product'
 
 import { getProducts } from '../../actions/products'
+import { showSearch } from '../../actions/helpers'
 
 
 class Products extends Component {
     
      componentDidMount() {
          this.props.getProducts()
+         this.props.showSearch(true)
      }
 
      createProductMatrix(arr) {
@@ -28,6 +30,10 @@ class Products extends Component {
         })
         productMatrix.push(productArr)
         return productMatrix
+     }
+
+     componentWillUnmount() {
+         this.props.showSearch(false)
      }
 
     render() {
@@ -65,6 +71,6 @@ class Products extends Component {
     }
 }
 
-const mapStateToProps = ({ products, cart }) => ({ products, cart })
+const mapStateToProps = ({ products, cart, helpers }) => ({ products, cart, helpers })
 
-export default connect(mapStateToProps, { getProducts })(Products)
+export default connect(mapStateToProps, { getProducts, showSearch })(Products)

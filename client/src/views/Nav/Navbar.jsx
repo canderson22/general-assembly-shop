@@ -25,14 +25,19 @@ class Navbar extends Component {
                                 <li><Link to='/'>About</Link></li>
                                 <li><Link to='/logout'>Log out</Link></li>
                             </ul>
-                             
-                            <form className='right red hide-on-med-and-down'>
-                                <div className="input-field">
-                                <input id="search" type="search" placeholder='Search for items' />
-                                <label className="label-icon"><i className="material-icons">search</i></label>
-                                <i className="material-icons">close</i>
-                                </div>
-                            </form>
+                             {
+                                 this.props.helpers.viewSearch
+                                 ? (
+                                    <form className='right red hide-on-med-and-down'>
+                                        <div className="input-field">
+                                        <input id="search" type="search" placeholder='Search for items' />
+                                        <label className="label-icon"><i className="material-icons">search</i></label>
+                                        <i className="material-icons">close</i>
+                                        </div>
+                                    </form>
+                                 )
+                                : null
+                             }
                             </span>
                         )
                         : (
@@ -56,6 +61,6 @@ class Navbar extends Component {
     }
 }
 
-const mapStateToProps = ({ user }) => ({ user })
+const mapStateToProps = ({ user, helpers }) => ({ user, helpers })
 
 export default connect(mapStateToProps)(Navbar);
