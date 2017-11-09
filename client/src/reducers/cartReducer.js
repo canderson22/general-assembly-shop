@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cart'
+import { ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART } from '../actions/cart'
 
 function addToCart(state, newItem) {
     if(state.find(item => item._id === newItem._id)) {
@@ -28,6 +28,8 @@ export default (state=[], action) => {
             return addToCart(state, action.payload)
         case REMOVE_FROM_CART:
             return removeFromCart(state, action.payload)
+        case CLEAR_CART:
+            return action.payload
         default:
             return state
     }

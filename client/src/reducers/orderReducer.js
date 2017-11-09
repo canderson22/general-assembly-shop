@@ -1,9 +1,10 @@
-import { PROCESS_PAYMENT, COMPLETE_ORDER } from '../actions/order'
+import { PROCESS_PAYMENT, COMPLETE_ORDER , PROCESSING} from '../actions/order'
 
 
 const defaultState = {
-  processPayment: false,
-  order: null
+  processPayment: 'pending',
+  order: null,
+  processing: false
 }
 
 export default (state=defaultState, action) => {
@@ -12,6 +13,8 @@ export default (state=defaultState, action) => {
             return Object.assign({}, state, {processPayment: action.payload})
         case COMPLETE_ORDER:
             return Object.assign({}, state, { order: action.payload})
+        case PROCESSING:
+            return Object.assign({}, state, { processing: action.payload })
         default:
             return state
     }

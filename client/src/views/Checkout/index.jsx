@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import StripeCheckout from 'react-stripe-checkout'
 import { connect } from 'react-redux'
 import { showCart } from '../../actions/helpers'
-import { processPayment, completeOrder } from '../../actions/order'
+import { processPayment, completeOrder, processing } from '../../actions/order'
 
 import Processing from '../Helpers/Processing'
 import './checkout.css'
 
-const STRIPE_PUBLISHABLE = 'pk_test_6BHnRpbfLZSr0IIv8mCjwC8o'
+const STRIPE_PUBLISHABLE = process.env.REACT_APP_PUBLISHABLE_KEY
 
 
 class Checkout extends React.Component {
@@ -17,6 +17,10 @@ class Checkout extends React.Component {
 
     onBack() {
         this.props.showCart(!this.props.helpers.viewCart)
+    }
+
+    onClose() {
+        this.props.processing(true)
     }
 
     onToken(token) {
@@ -49,7 +53,7 @@ class Checkout extends React.Component {
         return (
             <div className='container'>
                 {
-                    this.props.order.processPayment
+                    this.props.order.processing
                     ? (
                         <h1>
                             Your Order is being Processed
@@ -99,16 +103,14 @@ class Checkout extends React.Component {
                 <div className='btn-group'>
                     <Link onClick={this.onBack.bind(this)} to='/shop' className='left btn blue'>Back</Link>
                     <StripeCheckout
-
                       className='right'
                       descritption='GA Swag'
                       stripeKey={STRIPE_PUBLISHABLE}
                       amount={amount}
                       currency='USD'
                       token={this.onToken.bind(this)}
-                      
                     >
-                    <button className='right btn green'>Pay with Card</button>
+                    <button onClick={this.onClose.bind(this)} className='right btn green'>Pay with Card</button>
                     </StripeCheckout>
                 </div>
             </div>
@@ -120,4 +122,4 @@ class Checkout extends React.Component {
 
 const mapStateToProps = ({ user, cart, helpers, order }) => ({ user, cart, helpers, order })
 
-export default connect(mapStateToProps, { showCart, processPayment, completeOrder })(Checkout)
+export default connect(mapStateToProps, { showCart, processPayment, processing, completeOrder })(Checkout)

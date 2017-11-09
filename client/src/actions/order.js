@@ -1,6 +1,6 @@
 import axios from 'axios'
-export const PROCESS_PAYMENT = 'PROCESS_PAYMENT'
 
+export const PROCESS_PAYMENT = 'PROCESS_PAYMENT'
 export function processPayment(token, amount, cb) {
     const request = axios.post('/api/orders/charge', {
         description: 'GA Swag',
@@ -33,3 +33,7 @@ export function completeOrder(order, cb) {
     return { type: COMPLETE_ORDER, payload: request}
 }
 
+export const PROCESSING = 'PROCESSING'
+export function processing(process) {
+    return { type: PROCESSING, payload: process}
+}
