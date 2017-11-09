@@ -1,7 +1,7 @@
 [
     {
         "_id": "1", 
-        "image": "./productImages/ga_black_bottle.png", 
+        "image": "./productImages/code-shirt.jpg", 
         "title": "General Assembly Water Bottle",
         "desc": "GA aluminuim water bottle",
         "color": "black",
@@ -10,7 +10,7 @@
     },
     {
         "_id": "2", 
-        "image": "./productImages/white_bottle.png", 
+        "image": "./productImages/markers.jpg", 
         "title": "General Assembly Water Bottle",
         "desc": "GA aluminuim water bottle",
         "color": "white",
@@ -19,7 +19,7 @@
     },
     {
         "_id": "3", 
-        "image": "./productImages/red_bottle.png", 
+        "image": "./productImages/ga-backpack.jpg", 
         "title": "General Assembly Water Bottle",
         "desc": "GA aluminuim water bottle",
         "color": "red",
@@ -28,7 +28,7 @@
     },
     {
         "_id": "4", 
-        "image": "./productImages/red_bottle.png", 
+        "image": "./productImages/ga-hoodie.png", 
         "title": "General Assembly Water Bottle",
         "desc": "GA aluminuim water bottle",
         "color": "red",
