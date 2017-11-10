@@ -8,7 +8,7 @@ import { processPayment, completeOrder, processing } from '../../actions/order'
 import Processing from '../Helpers/Processing'
 import './checkout.css'
 
-const STRIPE_PUBLISHABLE = process.env.REACT_APP_PUBLISHABLE_KEY
+const STRIPE_PUBLISHABLE = 'pk_test_6BHnRpbfLZSr0IIv8mCjwC8o'
 
 
 class Checkout extends React.Component {
