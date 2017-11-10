@@ -5,3 +5,16 @@
     margin: auto;
     height: 350px;
 }
+
+.bottle {
+    width: 59px !important;
+    height: 219px !important;
+}
+
+.standard {
+    height: 328px !important;
+}
+
+.shirt {
+    height: 318px !important;
+}

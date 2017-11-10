@@ -11,11 +11,23 @@ class Product extends React.Component {
 
     render() {
         const { item } = this.props
+        let classBottle = ''
+        let classStandard = ''
+        let classShirt = ''
+        if(item.title.indexOf('Bottle') > -1) {
+            classBottle = 'bottle'
+        }
+        if(item.title.indexOf('Standard') > -1) {
+            classStandard = 'standard'
+        }
+        if(item.title.indexOf('hate') > -1) {
+            classShirt = 'shirt'
+        }
         return (
                 <div className='col s4'>
                     <div className="card">
                         <div className="card-image">
-                            <img src={item.image} alt='' />
+                            <img className={classBottle || classStandard || classShirt} src={item.image} alt='' />
                         </div>
                         <div className="card-content">
                             <span className='card-title'>

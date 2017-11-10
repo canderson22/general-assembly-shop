@@ -1,8 +1,13 @@
-const products = require('../products.json')
+const
+  mongoose = require('mongoose'),
+  Product = require('../models/Product')
 
 module.exports = {
     index: (req, res) => {
-        res.json({ products })
+        Product.find({}, (err, products) => {
+            if(err) return console.log(products)
+            res.json({products})
+        })
     },
 
     create: (req, res) => {

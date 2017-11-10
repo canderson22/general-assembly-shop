@@ -1,0 +1,107 @@
+[
+    {
+        "image": "https://s3.amazonaws.com/ga-products/ga_black_bottle.png", 
+        "title": "General Assembly Water Bottle",
+        "desc": "GA aluminuim water bottle",
+        "color": "black",
+        "inStock": 20,
+        "price": "9.99"
+    },
+    {
+        "image": "https://s3.amazonaws.com/ga-products/white_bottle.png", 
+        "title": "General Assembly Water Bottle",
+        "desc": "GA aluminuim water bottle",
+        "color": "white",
+        "inStock": 5,
+        "price": "9.99"
+    },
+    {
+        "image": "https://s3.amazonaws.com/ga-products/red_bottle.png", 
+        "title": "General Assembly Water Bottle",
+        "desc": "GA aluminuim water bottle",
+        "color": "red",
+        "inStock": 4,
+        "price": "9.99"
+    },
+    {
+        "image": "https://s3.amazonaws.com/ga-products/code-shirt.jpg", 
+        "title": "I Write Code T-Shirt",
+        "desc": "Funny computer coding shirt",
+        "color": "black",
+        "inStock": 4,
+        "price": "29.99"
+    },
+    {
+        "image": "https://s3.amazonaws.com/ga-products/eat-sleep.jpg", 
+        "title": "Eat Sleep & Code T-Shirt",
+        "desc": "Funny computer coding shirt",
+        "color": "red",
+        "inStock": 4,
+        "price": "29.99"
+    },
+    {
+        "image": "https://s3.amazonaws.com/ga-products/ga-backpack.jpg", 
+        "title": "GA Standard Backpack",
+        "desc": "General Assembly all purpose backpack",
+        "color": "gray",
+        "inStock": 4,
+        "price": "34.99"
+    },
+    {
+        "image": "https://s3.amazonaws.com/ga-products/ga-hoodie.png", 
+        "title": "GA Hoodie",
+        "desc": "GA winter hoodie",
+        "color": "black",
+        "inStock": 4,
+        "price": "49.99"
+    },
+    {
+        "image": "https://s3.amazonaws.com/ga-products/ga-mesh-backpack.jpg",
+        "title": "GA Mesh Backpack",
+        "desc": "GA tough and rough mesh backpack",
+        "color": "black",
+        "inStock": 4,
+        "price": "39.99"
+    },
+    {
+        "image": "https://s3.amazonaws.com/ga-products/ga-vneck.jpg",
+        "title": "GA Ninja V Neck Shirt",
+        "desc": "GA V neck shirt",
+        "color": "navy",
+        "inStock": 4,
+        "price": "19.99"
+    },
+    {
+        "image": "https://s3.amazonaws.com/ga-products/github.jpg",
+        "title": "GA Git Hub T-shirt",
+        "desc": "GA git hub social coding shirt",
+        "color": "teal",
+        "inStock": 4,
+        "price": "19.99"
+    },
+    {
+        "image": "https://s3.amazonaws.com/ga-products/give-me-break.gif",
+        "title": "GA Break T-shirt",
+        "desc": "GA give me a break t-shirt",
+        "color": "white",
+        "inStock": 4,
+        "price": "19.99"
+    },
+    {
+        "image": "https://s3.amazonaws.com/ga-products/hate-pro.jpg",
+        "title": "GA I hate programming T-shirt",
+        "desc": "Funny coding shirt",
+        "color": "gray",
+        "inStock": 4,
+        "price": "19.99"
+    },
+    {
+        "image": "https://s3.amazonaws.com/ga-products/markers.jpg",
+        "title": "GA Markers",
+        "desc": "Colorful markers for Philippe",
+        "color": "Rainbow",
+        "inStock": 4,
+        "price": "9.99"
+    }
+
+]
