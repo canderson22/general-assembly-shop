@@ -7,13 +7,13 @@ const Home = () => {
         <div className='HOME'>
            <div className='parallax-container valign-wrapper'>
                 <div className='parallax'>
-                    <img src="/productImages/ga-background.jpg" alt="unsplashed background img"/>
+                    <img src="https://s3.amazonaws.com/ga-products/ga-background.jpg" alt="unsplashed background img"/>
                 </div>
            </div> 
            <div className="container">
                 <div className="section">
                     <div className='center-align'>
-                        <img src="/productImages/ga-logo.jpeg" alt="ga logo"/>
+                        <img src="https://s3.amazonaws.com/ga-products/ga-logo.jpeg" alt="ga logo"/>
                         <h1 className='heading'>SHOP</h1>
                         <div className='divider'></div>
                         <h2>Your one way stop and shop for swagged out gear and supplies</h2>
@@ -22,7 +22,7 @@ const Home = () => {
             </div>
            <div className='parallax-container valign-wrapper'>
                 <div className='parallax'>
-                    <img src="/productImages/shirt-bg.jpg" alt="unsplashed background img"/>
+                    <img src="https://s3.amazonaws.com/ga-products/shirt-bg.jpg" alt="unsplashed background img"/>
                 </div>
            </div> 
            <div className="container">
