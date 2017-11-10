@@ -12,6 +12,7 @@ import Products from './views/Products/Products'
 import Checkout from './views/Checkout'
 import Order from './views/Order'
 import Events from './views/Events'
+import Settings from './views/Settings'
 
 class App extends React.Component {
 
@@ -40,6 +41,10 @@ class App extends React.Component {
 
           <Route path='/events' render={(props) => {
             return <Events {...props} />
+          }} />
+
+          <Route path='/settings' render={(props) => {
+            return <Settings {...props} />
           }} />
 
           <Route path='/shop' render={(props) => {
