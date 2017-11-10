@@ -11,7 +11,7 @@ import Login from './views/Registration/Login'
 import Products from './views/Products/Products'
 import Checkout from './views/Checkout'
 import Order from './views/Order'
-import Chat from './views/Chat'
+import Events from './views/Events'
 
 class App extends React.Component {
 
@@ -38,8 +38,8 @@ class App extends React.Component {
             return <Login {...props} />
           }} />
 
-          <Route path='/chat' render={(props) => {
-            return <Chat {...props} />
+          <Route path='/events' render={(props) => {
+            return <Events {...props} />
           }} />
 
           <Route path='/shop' render={(props) => {

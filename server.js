@@ -10,7 +10,8 @@ const
   PORT = process.env.PORT || 3001,
   userRoutes = require('./routes/users'),
   ProductRoutes = require('./routes/products'),
-  orderRoutes = require('./routes/orders')
+  orderRoutes = require('./routes/orders'),
+  eventsRoutes = require('./routes/events')
 //
 
 mongoose.connect(MONGODB_URI, (err) => {
@@ -31,6 +32,7 @@ app.get('/api', (req, res) => {
 app.use('/api/users', userRoutes)
 app.use('/api/products', ProductRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/events', eventsRoutes)
 
 app.get('*', (req, res) => {
     res.sendFile(`${__dirname}/client/build/index.html`)
