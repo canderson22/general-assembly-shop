@@ -32,7 +32,7 @@ Open the folder in your terminal. Run ``` npm install ``` from the root director
 ## Wireframes 
 Trello Board [My Trello Board](https://trello.com/c/IdRDJwOH/7-as-a-user-i-would-like-to-use-a-payment-plan)
 
-Data models [](https://s3.amazonaws.com/ga-products/Screen+Shot+2017-11-10+at+9.14.00+AM.png)
+Data models ![](https://s3.amazonaws.com/ga-products/Screen+Shot+2017-11-10+at+9.39.04+AM.png)
 
 ## Unsolved Problems 
 
