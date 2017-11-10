@@ -28,10 +28,13 @@ module.exports = {
     update: (req, res) => {
         User.findById(req.params.id, (err, user) => {
             if(err) return console.log(err)
-            Object.assign(user, req.body)
+            user.f_name = req.body.f_name || user.f_name
+            user.l_name = req.body.l_name || user.l_name
             user.save((err, updatedUser) => {
                 if(err) return console.log(err)
-                res.json({updatedUser})
+                console.log(updatedUser)
+                const token = signToken(updatedUser)
+                res.json({token})
             })
         })
     },

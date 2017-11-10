@@ -78,3 +78,32 @@ export function userLogin(credentials, successCb, errorCb) {
       return { type: USER_LOGIN, payload: request } 
 }
 
+export const UPDATE_USER = 'UPDATE_USER'
+export function updateUser(fields) {
+    console.log(fields)
+    const request = clientAuth({
+        method: 'patch',
+        url: `/api/users/${fields._id}`,
+        data: fields
+    })
+    .then(res => res.data.token)
+    .then(token => {
+        clientAuth.defaults.headers.common.token = setToken(token)
+        return jwtDecode(token)
+    })
+    return { type: UPDATE_USER, payload: request }
+}
+
+export const DELETE_USER = 'DELETE_USER'
+export function deleteUser(_id) {
+    const request = clientAuth({
+        method: 'delete',
+        url: `/api/users/${_id}`
+    })
+    .then((res) => {
+        localStorage.removeItem('token')
+        delete clientAuth.defaults.headers.common.token
+        return null
+    })
+    return { type: DELETE_USER, payload: request}
+}
