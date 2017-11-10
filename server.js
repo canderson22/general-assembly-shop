@@ -21,6 +21,8 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(express.static(`${__dirname}/client/build`))
+
 
 app.get('/api', (req, res) => {
     res.json({message: 'API ROOT'})
@@ -29,6 +31,10 @@ app.get('/api', (req, res) => {
 app.use('/api/users', userRoutes)
 app.use('/api/products', ProductRoutes)
 app.use('/api/orders', orderRoutes)
+
+app.get('*', (req, res) => {
+    res.sendFile(`${__dirname}/client/build/index.html`)
+})
 
 app.listen(PORT, (err) => {
     console.log(err || `Listening on port 🔥 ${PORT}`)
