@@ -8,7 +8,7 @@ import { processPayment, completeOrder, processing } from '../../actions/order'
 import Processing from '../Helpers/Processing'
 import './checkout.css'
 
-const STRIPE_PUBLISHABLE = 'pk_test_6BHnRpbfLZSr0IIv8mCjwC8o'
+// const STRIPE_PUBLISHABLE = 'pk_test_6BHnRpbfLZSr0IIv8mCjwC8o'
 
 
 class Checkout extends React.Component {
@@ -105,7 +105,7 @@ class Checkout extends React.Component {
                     <StripeCheckout
                       className='right'
                       descritption='GA Swag'
-                      stripeKey={STRIPE_PUBLISHABLE}
+                      stripeKey={process.env.REACT_APP_PUBLISHABLE_KEY}
                       amount={amount}
                       currency='USD'
                       token={this.onToken.bind(this)}

@@ -26,20 +26,20 @@ class App extends React.Component {
         <Switch>
           <Route path='/signup' render={(props) => {
             if(this.props.user) {
-              <Redirect to='/' />
+              return <Redirect to='/' />
             }
             return <Signup {...props} />
           }} />
           <Route path='/login' render={(props) => {
             if(this.props.user) {
-              <Redirect to='/' />
+              return <Redirect to='/' />
             }
             return <Login {...props} />
           }} />
 
           <Route path='/shop' render={(props) => {
             if(!this.props.user) {
-              <Redirect to='/' />
+              return <Redirect to='/' />
             }
             return <Products {...props} />
           }} />
@@ -51,10 +51,7 @@ class App extends React.Component {
           }} />
 
           <Route path='/completeOrder' render={(props) => {
-            if(this.props.cart.lenth > 0) {
               return <Order {...props} />
-            } 
-            return <Redirect to='/shop' />
           }} />
   
           <Route path='/logout' render={(props) => {
