@@ -24,4 +24,4 @@ ReactDOM.render(
     // </StripeProvider>,
     document.getElementById('root')
 );
-registerServiceWorker();
+// registerServiceWorker();

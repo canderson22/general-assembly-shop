@@ -11,6 +11,7 @@ import Login from './views/Registration/Login'
 import Products from './views/Products/Products'
 import Checkout from './views/Checkout'
 import Order from './views/Order'
+import Chat from './views/Chat'
 
 class App extends React.Component {
 
@@ -35,6 +36,10 @@ class App extends React.Component {
               return <Redirect to='/' />
             }
             return <Login {...props} />
+          }} />
+
+          <Route path='/chat' render={(props) => {
+            return <Chat {...props} />
           }} />
 
           <Route path='/shop' render={(props) => {

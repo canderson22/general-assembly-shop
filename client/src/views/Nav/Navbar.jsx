@@ -22,7 +22,7 @@ class Navbar extends Component {
                             <ul id="nav-mobile" className="left hide-on-med-and-down">
                                 <li><Link to='/'>Home</Link></li>
                                 <li><Link to='/shop'>Shop</Link></li>
-                                <li><Link to='/'>About</Link></li>
+                                <li><Link to='/chat'>Chat</Link></li>
                                 <li><Link to='/logout'>Log out</Link></li>
                             </ul>
                              {
