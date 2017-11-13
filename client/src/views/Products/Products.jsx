@@ -46,7 +46,7 @@ class Products extends Component {
                     ? <CartSummary />
                     : null
                 }
-                <h1>Products</h1>
+                <h1 className='center-align'>GA Swag</h1>
                 <div className='container'>
                     {
                         products

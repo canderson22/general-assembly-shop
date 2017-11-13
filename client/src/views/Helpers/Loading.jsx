@@ -1,21 +1,10 @@
 import React from 'react'
+import { Preloader } from 'react-materialize'
 
 export default () => {
     return (
         <div className='center-align'>
-        <h3>Loading...
-        <div className="preloader-wrapper active">
-            <div className="spinner-layer spinner-red-only">
-            <div className="circle-clipper left">
-                <div className="circle"></div>
-            </div><div className="gap-patch">
-                <div className="circle"></div>
-            </div><div className="circle-clipper right">
-                <div className="circle"></div>
-            </div>
-            </div>
+            <Preloader flashing />
         </div>
-        </h3>
-    </div>
     )
 }

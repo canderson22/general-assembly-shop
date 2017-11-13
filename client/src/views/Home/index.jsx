@@ -1,15 +1,12 @@
 import React from 'react'
+import { Parallax } from 'react-materialize'
 
 import './home.css'
 
 const Home = () => {
     return (
         <div className='HOME'>
-           <div className='parallax-container valign-wrapper'>
-                <div className='parallax'>
-                    <img src="https://s3.amazonaws.com/ga-products/ga-background.jpg" alt="unsplashed background img"/>
-                </div>
-           </div> 
+            <Parallax className='valign-wrapper' imageSrc='https://s3.amazonaws.com/ga-products/ga-background.jpg' />
            <div className="container">
                 <div className="section">
                     <div className='center-align'>
@@ -20,11 +17,7 @@ const Home = () => {
                     </div>     
                 </div>
             </div>
-           <div className='parallax-container valign-wrapper'>
-                <div className='parallax'>
-                    <img src="https://s3.amazonaws.com/ga-products/shirt-bg.jpg" alt="unsplashed background img"/>
-                </div>
-           </div> 
+            <Parallax className='valign-wrapper' imageSrc='https://s3.amazonaws.com/ga-products/shirt-bg.jpg' />
            <div className="container">
                 <div className="section">
                     <div className='center-align'>
@@ -37,11 +30,7 @@ const Home = () => {
                     </div>     
                 </div>
             </div>
-            <div className='parallax-container valign-wrapper'>
-                <div className='parallax'>
-                    <img src="https://ga-shop.s3.amazonaws.com/production/store/locationmasthead/11/image/retina-3af887010db0db7a24bcae3ab47100a7.jpg" alt="unsplashed background img"/>
-                </div>
-           </div> 
+            <Parallax className='valign-wrapper' imageSrc='https://ga-shop.s3.amazonaws.com/production/store/locationmasthead/11/image/retina-3af887010db0db7a24bcae3ab47100a7.jpg' />
         </div>
     )
 }
