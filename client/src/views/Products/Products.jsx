@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import splitArray from 'split-array'
 
 import './products.css'
 
@@ -7,29 +8,13 @@ import Loading from '../Helpers/Loading'
 import CartSummary from '../Helpers/cartSummary'
 import Product from './Product'
 
-import { getProducts } from '../../actions/products'
 import { showSearch } from '../../actions/helpers'
 
 
 class Products extends Component {
     
      componentDidMount() {
-         this.props.getProducts()
          this.props.showSearch(true)
-     }
-
-     createProductMatrix(arr) {
-        const productMatrix = []
-        let productArr = []
-        arr.forEach((item, i) => {
-            productArr.push(item)
-            if((i + 1) % 3 === 0) {
-                productMatrix.push(productArr)
-                productArr = []
-            }
-        })
-        productMatrix.push(productArr)
-        return productMatrix
      }
 
      componentWillUnmount() {
@@ -37,8 +22,8 @@ class Products extends Component {
      }
 
     render() {
-        const products = this.createProductMatrix(this.props.products)
-        
+        const products = splitArray(this.props.products, 3)
+        console.log(products)
         return (
             <div className='Products'>
                 {
@@ -73,4 +58,4 @@ class Products extends Component {
 
 const mapStateToProps = ({ products, cart, helpers }) => ({ products, cart, helpers })
 
-export default connect(mapStateToProps, { getProducts, showSearch })(Products)
+export default connect(mapStateToProps, { showSearch })(Products)

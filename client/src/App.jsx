@@ -1,7 +1,9 @@
 import React from 'react'
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+
 import { getCurrentUser } from './actions/user'
+import { getProducts } from './actions/products'
 
 import Nav from './views/Nav/Navbar'
 import Home from './views/Home'
@@ -18,6 +20,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.props.getCurrentUser()
+    this.props.getProducts()
   }
 
   render() {
@@ -80,4 +83,4 @@ class App extends React.Component {
 
 const mapStateToProps = ({ user, cart }) => ({ user, cart })
 
-export default withRouter(connect(mapStateToProps, { getCurrentUser })(App));
+export default withRouter(connect(mapStateToProps, { getCurrentUser, getProducts })(App));
