@@ -13,8 +13,7 @@ export function getProducts() {
 }
 
 export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS'
-export function searchProducts(term) {
-    console.log(term)
+export function searchProducts(term, products) {
     return { type: SEARCH_PRODUCTS, payload: { term }}
 }
 
