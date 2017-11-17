@@ -12,5 +12,11 @@ export function getProducts() {
     return { type: GET_PRODUCTS, payload: request }
 }
 
+export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS'
+export function searchProducts(term) {
+    console.log(term)
+    return { type: SEARCH_PRODUCTS, payload: { term }}
+}
+
 
 

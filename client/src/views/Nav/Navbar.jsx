@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { searchProducts } from '../../actions/products'
 
 import './navbar.css'
 import gaLogo from '../images/general-assembly-logo.png'
 
 class Navbar extends Component {
+    onInputChange(e) {
+        
+        this.props.searchProducts(e.target.value)
+    }
  
     render() {
         return (
@@ -30,9 +35,8 @@ class Navbar extends Component {
                                  ? (
                                     <form className='right red hide-on-med-and-down'>
                                         <div className="input-field">
-                                        <input id="search" type="search" placeholder='Search for items' />
+                                        <input onChange={this.onInputChange.bind(this)} id="search" type="search" placeholder='Search for items' />
                                         <label className="label-icon"><i className="material-icons">search</i></label>
-                                        <i className="material-icons">close</i>
                                         </div>
                                     </form>
                                  )
@@ -63,4 +67,4 @@ class Navbar extends Component {
 
 const mapStateToProps = ({ user, helpers }) => ({ user, helpers })
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { searchProducts })(Navbar);
