@@ -1,20 +1,21 @@
+.card {
+    height: 500px;
+}
 .card .card-image img {
-    display: block;
-    border-radius: 2px 2px 0 0;
-    width: 300px;
+    max-height: 350px;
     margin: auto;
-    height: 350px;
+    width: auto;
+    max-width: 300px;
+    height: auto;
+    max-height: 260px;
 }
-
-.bottle {
-    width: 59px !important;
-    height: 219px !important;
+i.right {
+    margin-left: 0px;
 }
-
-.standard {
-    height: 328px !important;
+.add-to {
+    font-size: 14px;
 }
-
-.shirt {
-    height: 318px !important;
+input[type=number]:not(.browser-default):focus:not([readonly]) {
+    border-color: red;
+    box-shadow: 0 1px 0 red;
 }

@@ -8,12 +8,14 @@ import Loading from '../Helpers/Loading'
 import CartSummary from '../Helpers/cartSummary'
 import Product from './Product'
 
+import { getProducts } from '../../actions/products'
 import { showSearch } from '../../actions/helpers'
 
 
 class Products extends Component {
     
      componentDidMount() {
+         this.props.getProducts();
          this.props.showSearch(true)
      }
 
@@ -23,7 +25,6 @@ class Products extends Component {
 
     render() {
         const products = splitArray(this.props.products, 3)
-        console.log(products)
         return (
             <div className='Products'>
                 {
@@ -34,7 +35,7 @@ class Products extends Component {
                 <h1 className='center-align'>GA Swag</h1>
                 <div className='container'>
                     {
-                        products
+                        this.props.products
                         ? (
                                 products.map((row, i) => {
                                 return (
@@ -58,4 +59,4 @@ class Products extends Component {
 
 const mapStateToProps = ({ products, cart, helpers }) => ({ products, cart, helpers })
 
-export default connect(mapStateToProps, { showSearch })(Products)
+export default connect(mapStateToProps, { showSearch, getProducts })(Products)

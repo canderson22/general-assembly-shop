@@ -5,8 +5,8 @@ const
         title: String,
         desc: String,
         color: String,
-        inStock: String,
-        price: String
+        inStock: Number,
+        price: Number
     })
 //
 const Product = mongoose.model('Product', productSchema)

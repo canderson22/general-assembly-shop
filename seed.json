@@ -1,5 +1,5 @@
 {
-	"undefined": "mongodb://heroku_6fz4dn8j:g6spf7pjt2hqclshetm04rtq7u@ds157325.mlab.com:57325/heroku_6fz4dn8j",
-	"dev": "mongodb://heroku_6fz4dn8j:g6spf7pjt2hqclshetm04rtq7u@ds157325.mlab.com:57325/heroku_6fz4dn8j",
-	"prod": "mongodb://heroku_6fz4dn8j:g6spf7pjt2hqclshetm04rtq7u@ds157325.mlab.com:57325/heroku_6fz4dn8j"
+	"undefined": "mongodb://localhost/general-assembly",
+	"dev": "mongodb://localhost/general-assembly",
+	"prod": "mongodb://localhost/general-assembly"
 }

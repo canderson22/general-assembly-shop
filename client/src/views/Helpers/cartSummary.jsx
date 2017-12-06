@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { showCart } from '../../actions/helpers'
 import { removeFromCart } from '../../actions/cart'
+import { putItemsBack } from '../../actions/products'
 
 import './cartSummary.css'
 
@@ -12,8 +13,9 @@ class CartSummary extends Component {
         this.props.showCart(!this.props.helpers.viewCart)
     }
 
-    onRemoveFromCart(_id) {
-        this.props.removeFromCart(_id)
+    onRemoveFromCart(item) {
+        this.props.removeFromCart(item._id)
+        this.props.putItemsBack(item)
     }
 
     onCheckOut() {
@@ -60,8 +62,8 @@ class CartSummary extends Component {
                                             <td className='center-align'>{item.title} ({item.color})</td>
                                             <td className='center-align'>{item.price}</td>
                                             <td className='center-align'>{item.qty}</td>
-                                            <td className='center-align'>{item.qty * item.price}</td>
-                                            <td><button onClick={this.onRemoveFromCart.bind(this, item._id)} className='btn btn-remove red'><i className='tiny material-icons'>remove_shopping_cart</i></button></td>
+                                            <td className='center-align'>{(item.qty * item.price).toFixed(2)}</td>
+                                            <td><button onClick={this.onRemoveFromCart.bind(this, item)} className='btn btn-remove red'><i className='tiny material-icons'>remove_shopping_cart</i></button></td>
                                         </tr>
                                     )
                                 })
@@ -70,7 +72,7 @@ class CartSummary extends Component {
                                 <td>
                                     <Link onClick={this.onCheckOut.bind(this)} to='/checkout' className='btn orange lighten-1'>Check Out</Link>
                                 </td>
-                                <td className='left-align'>Total: ${total}</td>
+                                <td className='left-align'>Total: ${(total).toFixed(2)}</td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -88,4 +90,4 @@ class CartSummary extends Component {
 
 const mapStateToProps = ({ cart, helpers }) => ({ cart, helpers })
 
-export default connect(mapStateToProps, { showCart, removeFromCart })(CartSummary)
+export default connect(mapStateToProps, { showCart, removeFromCart, putItemsBack })(CartSummary)
