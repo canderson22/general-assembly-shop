@@ -9,6 +9,13 @@
     height: auto;
     max-height: 260px;
 }
+.price {
+    margin-top: 15px;
+}
+.card-action {
+    height: 98px;
+    padding: 15px;
+}
 i.right {
     margin-left: 0px;
 }

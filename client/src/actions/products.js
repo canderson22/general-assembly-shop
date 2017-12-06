@@ -9,7 +9,7 @@ export function getProducts() {
     .then(res => {
         var products = res.data.products
         products = products.map(item => {
-            item.qty = 0
+            item.qty = ""
             return item
         })
         return products
@@ -29,8 +29,7 @@ export function quantityChange(_id, qty) {
 
 // for updating products based on quantity that the user has added to thier cart
 export const UPDATE_PRODUCTS = 'UPDATE_PRODUCTS'
-export function updateProducts(item, cb) {
-    cb()
+export function updateProducts(item) {
     return { type: UPDATE_PRODUCTS, payload: item}
 }
 

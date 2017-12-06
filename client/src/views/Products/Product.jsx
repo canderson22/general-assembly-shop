@@ -9,9 +9,9 @@ class Product extends React.Component {
     onAddItem(item) {
         if (item.qty > 0) {
             this.props.addToCart(item)
-            this.props.updateProducts(item, () => {
-    
-            })
+            this.props.updateProducts(item)
+            toast(`<h5>Added ${item.qty} of ${item.title} to your cart!</h5>`, 2000 ,'left rounded red-text')
+            this.refs.qty.value = ""
         } else {
             toast(`<h5>Please add in a quantity</h5>`, 2000 ,'left rounded red-text')
         }
@@ -44,7 +44,7 @@ class Product extends React.Component {
                             <div className='row'>
                                 <div className='col s12 m9'>
                                     {
-                                        item.inStock
+                                        item.inStock > 0
                                         ? (
                                             <button onClick={this.onAddItem.bind(this, item)} className='waves-effect waves-dark btn red white-text'>
                                                 <i className='material-icons right'>add_shopping_cart</i><span className='add-to'>Add to</span>
@@ -54,12 +54,12 @@ class Product extends React.Component {
                                             <span>Out of Stock</span>
                                         )
                                     }
-                                    <h6>Price: ${Number(item.price).toFixed(2)}</h6>
+                                    <h6 className='price'>Price: ${Number(item.price).toFixed(2)}</h6>
                                 </div>
                                 <div className='col s12 m3'>
                                     <label htmlFor="">Quantity</label>
                                     {/* change the input back to zero once added to cart */}
-                                    <input onChange={this.onInputChange.bind(this)} data-target={item._id} value={item.qty} type="number" max={item.inStock} min="0" />
+                                    <input ref="qty" onChange={this.onInputChange.bind(this)} data-target={item._id} defaultValue={item.qty} type="number" max={item.inStock} min="0" />
                                 </div>
                             </div>
                             <div className='row'>
