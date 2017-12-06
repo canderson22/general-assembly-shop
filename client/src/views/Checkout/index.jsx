@@ -8,19 +8,23 @@ import { processPayment, completeOrder, processing } from '../../actions/order'
 import Processing from '../Helpers/Processing'
 import './checkout.css'
 
-// const STRIPE_PUBLISHABLE = 'pk_test_6BHnRpbfLZSr0IIv8mCjwC8o'
-
-
 class Checkout extends React.Component {
 
+    state = {
+        orderProcess: false
+    }
 
 
     onBack() {
         this.props.showCart(!this.props.helpers.viewCart)
     }
 
+    onOpened() {
+        this.setState({orderProcess: true})
+    }
+
     onClose() {
-        this.props.processing(true)
+        this.setState({orderProcess: false})
     }
 
     onToken(token) {
@@ -53,7 +57,7 @@ class Checkout extends React.Component {
         return (
             <div className='container'>
                 {
-                    this.props.order.processing
+                    this.state.orderProcess
                     ? (
                         <h1>
                             Your Order is being Processed
@@ -63,7 +67,7 @@ class Checkout extends React.Component {
                     : null
                 }
                 <h2 className='center-align'>Final Summary</h2>
-                <table className='checkout responsive-table striped'>
+                <table className='checkout responsive-table striped flow-text'>
                     <thead>
                         <tr>
                             <th>Item Name</th>
@@ -109,8 +113,10 @@ class Checkout extends React.Component {
                       amount={amount}
                       currency='USD'
                       token={this.onToken.bind(this)}
+                      opened={this.onOpened.bind(this)}
+                      closed={this.onClose.bind(this)}
                     >
-                    <button onClick={this.onClose.bind(this)} className='right btn green'>Pay with Card</button>
+                    <button className='right btn green'>Pay with Card</button>
                     </StripeCheckout>
                 </div>
             </div>

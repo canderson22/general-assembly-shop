@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { showCart } from '../../actions/helpers'
 import { removeFromCart } from '../../actions/cart'
 import { putItemsBack } from '../../actions/products'
+import { toast } from 'materialize-css'
 
 import './cartSummary.css'
 
@@ -16,6 +17,7 @@ class CartSummary extends Component {
     onRemoveFromCart(item) {
         this.props.removeFromCart(item._id)
         this.props.putItemsBack(item)
+        toast(`<h5>Removed ${item.qty} ${item.title} from you cart!</h5>`, 2000 ,'left rounded red-text')
     }
 
     onCheckOut() {

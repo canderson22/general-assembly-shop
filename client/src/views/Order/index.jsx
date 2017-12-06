@@ -11,7 +11,6 @@ class Order extends Component {
 
     render() {
         const order = this.props.order.order
-        // console.log(this.props.order)
         return (
             <div className='Order'>
                 {order

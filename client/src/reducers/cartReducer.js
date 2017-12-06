@@ -5,7 +5,6 @@ function addToCart(state, newItem) {
         return state.map(item => {
             if(item._id === newItem._id) {
                 item.qty += newItem.qty
-                return item
             }
             return item
         })

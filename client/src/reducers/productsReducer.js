@@ -14,12 +14,10 @@ function searchProducts(state, payload) {
 function changeQuantity(state, payload) {
     const newState = state.map(item => {
         if(payload._id === item._id) {
-            console.log(payload.qty)
             item.qty = payload.qty
         }
         return item
     })
-    console.log(newState)
     return newState
 }
 
@@ -37,7 +35,7 @@ function updateProducts(state, payload) {
 
 function putBackItems(state, payload) {
     const newState = state.map(item => {
-        if (item._id == payload._id) {
+        if (item._id === payload._id) {
             item.inStock += payload.qty
         }
         return item

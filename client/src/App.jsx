@@ -70,8 +70,7 @@ class App extends React.Component {
           }} />
 
           <Route path='/' render={(props) => {
-            return <Redirect to='/shop' />
-            // return <Home {...props} />
+            return <Home {...props} />
           }} />
         </Switch>
 
@@ -80,6 +79,6 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({ user })
+const mapStateToProps = ({ user, cart }) => ({ user, cart })
 
 export default withRouter(connect(mapStateToProps, { getCurrentUser })(App));
