@@ -84,7 +84,7 @@ class Checkout extends React.Component {
                                     <td>{item.title}</td>
                                     <td>{item.desc}</td>
                                     <td>{item.color}</td>
-                                    <td>{item.qty}</td>
+                                    <td className='center-align'>{item.qty}</td>
                                     <td>{item.price * item.qty}</td>
                                 </tr>
                             )

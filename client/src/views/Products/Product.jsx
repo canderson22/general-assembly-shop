@@ -64,7 +64,7 @@ class Product extends React.Component {
                                         <div className='col s12 m3'>
                                             <label htmlFor="">Quantity</label>
                                             {/* change the input back to zero once added to cart */}
-                                            <input ref="qty" onChange={this.onInputChange.bind(this)} data-target={item._id} defaultValue={item.qty} type="number" max={item.inStock} min="1" />
+                                            <input ref="qty" onChange={this.onInputChange.bind(this)} data-target={item._id} type="number" max={item.inStock} min="1" />
                                         </div>
                                     )
                                     : null
