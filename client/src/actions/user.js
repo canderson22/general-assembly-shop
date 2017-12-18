@@ -56,6 +56,7 @@ export function userSignin(credentials, successCb, errorCb) {
       return { type: USER_SIGNIN, payload: request}
 }
 
+//  USER LOGIN 
 export const USER_LOGIN = 'USER_LOGIN'
 export function userLogin(credentials, successCb, errorCb) {
     const request = clientAuth({
