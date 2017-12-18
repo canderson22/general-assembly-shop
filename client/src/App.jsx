@@ -33,7 +33,7 @@ class App extends React.Component {
             }
             return <Signup {...props} />
           }} />
-          <Route path='/login' render={(props) => {
+          {/* <Route path='/login' render={(props) => {
             if(this.props.user) {
               return <Redirect to='/' />
             }
@@ -67,7 +67,7 @@ class App extends React.Component {
   
           <Route path='/logout' render={(props) => {
             return <Logout {...props} />
-          }} />
+          }} /> */}
 
           <Route path='/' render={(props) => {
             return <Home {...props} />

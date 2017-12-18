@@ -24,6 +24,7 @@ export function getCurrentUser() {
     return { type: GET_CURRENT_USER, payload: null}
 }
 
+// LOG OUT USER
 export const USER_LOGOUT = 'USER_LOGOUT'
 export function userLogout() {
     localStorage.removeItem('token')
@@ -31,7 +32,7 @@ export function userLogout() {
     return { type: USER_LOGOUT, payload: null}
 }
 
-// user sign up
+// SIGN UP USER
 
 export const USER_SIGNIN = 'USER_SIGNIN'
 export function userSignin(credentials, successCb, errorCb) {
