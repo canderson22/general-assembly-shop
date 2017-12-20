@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { searchProducts } from '../../actions/products'
 
 import './navbar.css'
 import gaLogo from '../images/general-assembly-logo.png'
@@ -9,7 +8,6 @@ import gaLogo from '../images/general-assembly-logo.png'
 class Navbar extends Component {
     onInputChange(e) {
         
-        this.props.searchProducts(e.target.value)
     }
  
     render() {
@@ -27,7 +25,7 @@ class Navbar extends Component {
                             <ul id="nav-mobile" className="left hide-on-med-and-down">
                                 <li><Link to='/'>Home</Link></li>
                                 <li><Link to='/shop'>Shop</Link></li>
-                                <li><Link to='/settings'>Settings</Link></li>
+                                {/* <li><Link to='/settings'>Settings</Link></li> */}
                                 <li><Link to='/logout'>Log out</Link></li>
                             </ul>
                              {
@@ -67,4 +65,4 @@ class Navbar extends Component {
 
 const mapStateToProps = ({ user, helpers }) => ({ user, helpers })
 
-export default connect(mapStateToProps, { searchProducts })(Navbar);
+export default connect(mapStateToProps, { })(Navbar);

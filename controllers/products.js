@@ -5,7 +5,7 @@ const
 module.exports = {
     index: (req, res) => {
         Product.find({}, (err, products) => {
-            if(err) return console.log(products)
+            if(err) return res.json({error: 'Error with Server, Please try refreshing page.'})
             res.json({products})
         })
     },

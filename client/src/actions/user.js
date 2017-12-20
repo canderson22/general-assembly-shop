@@ -80,6 +80,7 @@ export function userLogin(credentials, successCb, errorCb) {
       return { type: USER_LOGIN, payload: request } 
 }
 
+// UPDATE USER SETTINGS
 export const UPDATE_USER = 'UPDATE_USER'
 export function updateUser(fields) {
     console.log(fields)
@@ -96,6 +97,8 @@ export function updateUser(fields) {
     return { type: UPDATE_USER, payload: request }
 }
 
+
+// DELETING USER
 export const DELETE_USER = 'DELETE_USER'
 export function deleteUser(_id) {
     const request = clientAuth({

@@ -10,10 +10,11 @@ import Logout from './views/Registration/Logout'
 import Signup from './views/Registration/Signup'
 import Login from './views/Registration/Login'
 import Products from './views/Products/Products'
-import Checkout from './views/Checkout'
-import Order from './views/Order'
-import Events from './views/Events'
-import Settings from './views/Settings'
+import Product from './views/Products/Product'
+// import Checkout from './views/Checkout' 
+// import Order from './views/Order'
+// import Events from './views/Events'
+// import Settings from './views/Settings'
 
 class App extends React.Component {
 
@@ -46,7 +47,7 @@ class App extends React.Component {
 
           <Route path='/settings' render={(props) => {
             return <Settings {...props} />
-          }} />
+          }} /> */}
 
           <Route path='/shop' render={(props) => {
             if(!this.props.user) {
@@ -54,7 +55,13 @@ class App extends React.Component {
             }
             return <Products {...props} />
           }} />
-          <Route path='/checkout' render={(props) => {
+          <Route path='/product/:_id' render={(props) => {
+            if(!this.props.user) {
+              return <Redirect to='/' />
+            }
+            return <Product {...props} />
+          }} />
+          {/*<Route path='/checkout' render={(props) => {
             if(this.props.cart.length > 0) {
               return <Checkout {...props} />
             }
@@ -70,7 +77,7 @@ class App extends React.Component {
           }} /> 
 
           <Route path='/' render={(props) => {
-            return <Home {...props} />
+            return <Products {...props} />
           }} />
         </Switch>
 

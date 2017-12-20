@@ -5,7 +5,7 @@ const
         title: String,
         desc: String,
         color: String,
-        inStock: Number,
+        inventory: Number,
         price: Number
     })
 //

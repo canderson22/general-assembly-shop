@@ -1,62 +1,88 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import splitArray from 'split-array'
-
 import './products.css'
+import { toast } from 'materialize-css'
 
-import Loading from '../Helpers/Loading'
-import CartSummary from '../Helpers/cartSummary'
-import Product from './Product'
+import Loader from '../Helpers/Loading'
 
 import { getProducts } from '../../actions/products'
-import { showSearch } from '../../actions/helpers'
 
 
 class Products extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            loading: true
+        }
+
+    }
     
      componentDidMount() {
-         this.props.getProducts();
-         this.props.showSearch(true)
+         this.props.getProducts(() => {
+             this.setState({loading: false})
+         }, (error) => {
+            this.setState({loading: true})
+            toast(`<h5>${error}</h5>`, 2000, 'rounded red-text')
+         });
      }
 
      componentWillUnmount() {
-         this.props.showSearch(false)
      }
+     
+    viewItem(_id) {
+        this.props.history.push(`product/${_id}`)
+    }
 
     render() {
-        const products = splitArray(this.props.products, 3)
+        const ProductRows = splitArray(this.props.products, 3)
         return (
             <div className='Products'>
                 {
-                    this.props.cart.length > 0
-                    ? <CartSummary />
-                    : null
+                    this.state.loading
+                    ? <Loader />
+                    : (
+                        <div className='container'>
+                            <h1 className='center-align'>Swag Collection</h1>
+                            {
+                                ProductRows.map((row, i) => {
+                                    return (
+                                        <div className='row' key={i}>
+                                            {
+                                                row.map(product => {
+                                                    return (
+                                                        <div className='col s12 m4' key={product._id}>
+                                                            <div className="card">
+                                                                <div className="card-image">
+                                                                    <img src={product.image} alt='' />
+                                                                </div>
+                                                                <div className="card-content">
+                                                                    <span className='card-title'>
+                                                                        {product.title}
+                                                                    </span>
+                                                                    <section className='center-align'>
+                                                                        ${product.price.toFixed(2)}
+                                                                    </section>
+                                                                </div>
+                                                                <div className='card-action center-align'>
+                                                                    <button onClick={this.viewItem.bind(this, product._id)} className='btn waves-effect waves-light red'>View Item</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    )
                 }
-                <h1 className='center-align'>GA Swag</h1>
-                <div className='container'>
-                    {
-                        this.props.products
-                        ? (
-                                products.map((row, i) => {
-                                return (
-                                    <div className='row' key={i}>
-                                        {
-                                            row.map(item => {
-                                                return <Product key={item._id} item={item} />
-                                            })
-                                        }
-                                    </div>
-                                )    
-                            })
-                        )
-                        : <Loading />
-                    }
-                </div>
             </div>
         );
     }
 }
 
-const mapStateToProps = ({ products, cart, helpers }) => ({ products, cart, helpers })
-
-export default connect(mapStateToProps, { showSearch, getProducts })(Products)
+const mapStateToProps = ({ products }) => ({ products })
+export default connect(mapStateToProps, { getProducts })(Products)

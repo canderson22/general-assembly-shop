@@ -1,88 +1,81 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { quantityChange, updateProducts } from '../../actions/products'
-import { addToCart } from '../../actions/cart'
-import { toast } from 'materialize-css'
 
 class Product extends React.Component {
-
-    onAddItem(item) {
-        if (item.qty > 0) {
-            this.props.addToCart(item)
-            this.props.updateProducts(item)
-            toast(`<h5>Added ${item.qty} ${item.title} to your cart!</h5>`, 2000 ,'left rounded red-text')
-            this.refs.qty.value = ""
-        } else {
-            toast(`<h5>Please add in a quantity</h5>`, 2000 ,'left rounded red-text')
+    constructor(props) {
+        super(props)
+        this.state = {
+            product: {},
+            quantity: 1
         }
+
+        this.addQty = this.addQty.bind(this)
+        this.minusQty = this.minusQty.bind(this)
     }
 
-    onInputChange(e) {
-        if(e.target.value > 0) {
-            var id = e.target.getAttribute('data-target')
-            this.props.quantityChange(id, Number(e.target.value))
+    componentDidMount() {
+        const { _id } = this.props.match.params
+        this.setState({
+            product: this.props.products.filter(product => product._id === _id)[0]
+        })
+    }
+
+    addQty() {
+        const { quantity, product } = this.state
+        if (quantity === product.inventory) {
+            return
+        }
+        this.setState({quantity: quantity + 1})
+    }
+
+    minusQty() {
+        const { quantity, product } = this.state
+        if (quantity === 1) {
+            return
+        } else {
+            this.setState({quantity: quantity - 1})
         }
     }
 
     render() {
-        const { item } = this.props
-        
+        const { product, quantity } = this.state
         return (
-                <div className='col s12 m4'>
-                    <div className="card">
-                        <div className="card-image">
-                            <img src={item.image} alt='' />
+            <div className='Product container z-depth-5'>
+                <div className='row'>
+                    <div className='col s6 box'>
+                        <div className='center-align'>
+                            <img className="responsive-img hoverable" src={product.image} />
                         </div>
-                        <div className="card-content">
-                            <span className='card-title'>
-                                {item.title}
+                        <div className='center-align'>
+                            <h5>{product.title}</h5>
+                            <p className='flow-text'>{product.desc}</p>
+                            <span className='flow-text'>
+                                Color <a className={`btn btn-floating ${product.color}`}></a>
+                                <br/><br/>
+                                In Stock {product.inventory}
+                                <br/>
+                                <br/>
+                                Price ${product.price}
                             </span>
-                            <p> 
-                                {item.desc}
-                            </p>
                         </div>
-                        <div className="card-action">
-                          <div className='container-fluid'>
-                            <div className='row'>
-                                <div className='col s12 m9'>
-                                    {
-                                        item.inStock > 0
-                                        ? (
-                                            <button onClick={this.onAddItem.bind(this, item)} className='waves-effect waves-dark btn red white-text'>
-                                                <i className='material-icons right'>add_shopping_cart</i><span className='add-to'>Add to</span>
-                                            </button>
-                                        )
-                                        : (
-                                            <span>Out of Stock</span>
-                                        )
-                                    }
-                                    <h6 className='price'>Price: ${Number(item.price).toFixed(2)}</h6>
-                                </div>
-                                {
-                                    item.inStock > 0
-                                    ? (
-                                        <div className='col s12 m3'>
-                                            <label htmlFor="">Quantity</label>
-                                            {/* change the input back to zero once added to cart */}
-                                            <input ref="qty" onChange={this.onInputChange.bind(this)} data-target={item._id} type="number" max={item.inStock} min="1" />
-                                        </div>
-                                    )
-                                    : null
-                                }
+                    </div>
+                    <div className='col s6 box'>
+                        <h4>Add it to your cart</h4>
+                        <div>
+                            <p className='flow-text'>Quantity</p>
+                            <div className='quantity'>
+                                <button onClick={this.minusQty} className='btn btn-floating red'><i className="material-icons">remove</i></button>
+                                <div className='qty-box'>{quantity}</div>
+                                <button onClick={this.addQty} className='btn btn-floating red'><i className="material-icons">add</i></button>
                             </div>
-                            <div className='row'>
-                                <div className='col s12'>
-                                    
-                                </div>
-                            </div>
-                          </div>
                         </div>
                     </div>
                 </div>
-            )
+            </div>
+        )
     }
 }
 
-const mapStateToProps = ({ cart }) => ({ cart })
+const mapStateToProps = ({ products }) => ({ products })
 
-export default connect(mapStateToProps, { addToCart, quantityChange, updateProducts })(Product)
+export default connect(mapStateToProps, {})(Product)

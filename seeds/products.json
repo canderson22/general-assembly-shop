@@ -4,7 +4,7 @@
         "title": "General Assembly Water Bottle",
         "desc": "GA aluminuim water bottle",
         "color": "black",
-        "inStock": 20,
+        "inventory": 20,
         "price": 9.99
     },
     {
@@ -12,7 +12,7 @@
         "title": "General Assembly Water Bottle",
         "desc": "GA aluminuim water bottle",
         "color": "white",
-        "inStock": 5,
+        "inventory": 5,
         "price": 9.99
     },
     {
@@ -20,7 +20,7 @@
         "title": "General Assembly Water Bottle",
         "desc": "GA aluminuim water bottle",
         "color": "red",
-        "inStock": 4,
+        "inventory": 4,
         "price": 9.99
     },
     {
@@ -28,7 +28,7 @@
         "title": "I Write Code T-Shirt",
         "desc": "Funny computer coding shirt",
         "color": "black",
-        "inStock": 4,
+        "inventory": 4,
         "price": 29.99
     },
     {
@@ -36,15 +36,15 @@
         "title": "Eat Sleep & Code T-Shirt",
         "desc": "Funny computer coding shirt",
         "color": "red",
-        "inStock": 4,
+        "inventory": 4,
         "price": 29.99
     },
     {
         "image": "https://s3.amazonaws.com/ga-products/ga-backpack.jpg", 
         "title": "GA Standard Backpack",
         "desc": "General Assembly all purpose backpack",
-        "color": "gray",
-        "inStock": 4,
+        "color": "grey",
+        "inventory": 4,
         "price": 34.99
     },
     {
@@ -52,7 +52,7 @@
         "title": "GA Hoodie",
         "desc": "GA winter hoodie",
         "color": "black",
-        "inStock": 4,
+        "inventory": 4,
         "price": 49.99
     },
     {
@@ -60,23 +60,23 @@
         "title": "GA Mesh Backpack",
         "desc": "GA tough and rough mesh backpack",
         "color": "black",
-        "inStock": 4,
+        "inventory": 4,
         "price": 39.99
     },
     {
         "image": "https://s3.amazonaws.com/ga-products/ga-vneck.jpg",
         "title": "GA Ninja V Neck Shirt",
         "desc": "GA V neck shirt",
-        "color": "navy",
-        "inStock": 4,
+        "color": "indigo darken-4",
+        "inventory": 4,
         "price": 18.00
     },
     {
         "image": "https://s3.amazonaws.com/ga-products/github.jpg",
         "title": "GA Git Hub T-shirt",
         "desc": "Git hub social coding shirt",
-        "color": "teal",
-        "inStock": 4,
+        "color": "cyan",
+        "inventory": 4,
         "price": 19.99
     },
     {
@@ -84,7 +84,7 @@
         "title": "GA Break T-shirt",
         "desc": "GA give me a break t-shirt",
         "color": "white",
-        "inStock": 4,
+        "inventory": 4,
         "price": 18.99
     },
     {
@@ -92,7 +92,7 @@
         "title": "hate programming shirt",
         "desc": "Funny coding shirt displaying the ups and downs of a programming life.",
         "color": "gray",
-        "inStock": 4,
+        "inventory": 4,
         "price": 20.00
     },
     {
@@ -100,7 +100,7 @@
         "title": "GA Markers",
         "desc": "Colorful markers for Philippe",
         "color": "Rainbow",
-        "inStock": 4,
+        "inventory": 4,
         "price": 9.99
     }
 
