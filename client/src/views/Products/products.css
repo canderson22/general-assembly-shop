@@ -18,10 +18,19 @@
     margin: 24px 0;
 }
 
+.box:nth-last-child(1) {
+    padding-top: 10%;
+}
+
 .quantity {
-    display: -webkit-box;
+    display: -webkit-inline-box;
 }
 
 .qty-box {
     margin: 0 20px;
+    font-size: 20px;
+}
+
+.btn-box {
+    margin: 40px auto;
 }

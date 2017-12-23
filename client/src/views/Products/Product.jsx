@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { addToCart } from '../../actions/cart'
+
 class Product extends React.Component {
     constructor(props) {
         super(props)
@@ -11,6 +13,7 @@ class Product extends React.Component {
 
         this.addQty = this.addQty.bind(this)
         this.minusQty = this.minusQty.bind(this)
+        this.addToCart = this.addToCart.bind(this)
     }
 
     componentDidMount() {
@@ -37,6 +40,12 @@ class Product extends React.Component {
         }
     }
 
+    addToCart() {
+        const { product, quantity } = this.state
+        var addedItem = Object.assign({}, product, {quantity})
+        this.props.addToCart(addedItem)
+    }
+
     render() {
         const { product, quantity } = this.state
         return (
@@ -60,13 +69,16 @@ class Product extends React.Component {
                         </div>
                     </div>
                     <div className='col s6 box'>
-                        <h4>Add it to your cart</h4>
-                        <div>
+                        <h4 className='center-align'>Add it to your cart</h4>
+                        <div className='center-align'>
                             <p className='flow-text'>Quantity</p>
-                            <div className='quantity'>
+                            <div className='quantity center-align'>
                                 <button onClick={this.minusQty} className='btn btn-floating red'><i className="material-icons">remove</i></button>
                                 <div className='qty-box'>{quantity}</div>
                                 <button onClick={this.addQty} className='btn btn-floating red'><i className="material-icons">add</i></button>
+                            </div>
+                            <div className='center-align btn-box'>
+                                <button onClick={this.addToCart} className='btn waves-effect waves-dark red'>Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -78,4 +90,4 @@ class Product extends React.Component {
 
 const mapStateToProps = ({ products }) => ({ products })
 
-export default connect(mapStateToProps, {})(Product)
+export default connect(mapStateToProps, { addToCart })(Product)
