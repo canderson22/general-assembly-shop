@@ -5,12 +5,13 @@ import { connect } from 'react-redux'
 import { getCurrentUser } from './actions/user'
 
 import Nav from './views/Nav/Navbar'
-import Home from './views/Home'
+// import Home from './views/Home'
 import Logout from './views/Registration/Logout'
 import Signup from './views/Registration/Signup'
 import Login from './views/Registration/Login'
 import Products from './views/Products/Products'
 import Product from './views/Products/Product'
+import Cart from './views/Helpers/cartSummary'
 // import Checkout from './views/Checkout' 
 // import Order from './views/Order'
 // import Events from './views/Events'
@@ -26,7 +27,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav />
-        
+        <Cart />
         <Switch>
           <Route path='/signup' render={(props) => {
             if(this.props.user) {

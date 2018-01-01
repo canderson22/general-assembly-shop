@@ -1,15 +1,22 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART } from '../actions/cart'
 
+const defaultState = JSON.parse(localStorage.getItem('ga-cart')) || []
+
 function addToCart(state, newItem) {
     if(state.find(item => item._id === newItem._id)) {
-        return state.map(item => {
+        var newState = state.map(item => {
             if(item._id === newItem._id) {
                 item.quantity += newItem.quantity
             }
-            console.log(item)
             return item
         })
+        localStorage.setItem('ga-cart', JSON.stringify(newState))
+        return newState
     } else {
+        localStorage.setItem('ga-cart', JSON.stringify([
+            ...state,
+            newItem
+        ]))
         return [
             ...state,
             newItem
@@ -22,7 +29,7 @@ function removeFromCart(state, id) {
     return newState
 }
 
-export default (state=[], action) => {
+export default (state = defaultState, action) => {
     switch (action.type) {
         case ADD_TO_CART:
             return addToCart(state, action.payload)

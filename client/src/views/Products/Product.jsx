@@ -2,6 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { addToCart } from '../../actions/cart'
+import { updateProduct } from '../../actions/products'
+import { showCart } from '../../actions/helpers'
+import { toast } from 'materialize-css'
 
 class Product extends React.Component {
     constructor(props) {
@@ -18,9 +21,8 @@ class Product extends React.Component {
 
     componentDidMount() {
         const { _id } = this.props.match.params
-        this.setState({
-            product: this.props.products.filter(product => product._id === _id)[0]
-        })
+        const product = this.props.products.filter(product => product._id === _id)[0]
+        this.setState({product})
     }
 
     addQty() {
@@ -41,9 +43,22 @@ class Product extends React.Component {
     }
 
     addToCart() {
-        const { product, quantity } = this.state
+        var { product, quantity } = this.state
         var addedItem = Object.assign({}, product, {quantity})
-        this.props.addToCart(addedItem)
+        this.props.addToCart(addedItem, () => {
+            toast(`<h5>Added to Cart X${quantity}</h5>`, 2000, 'rounded text-red')
+            this.props.showCart(true)
+            product.inventory -= quantity
+            this.setState({
+                quantity: 1,
+                product
+            })
+        })
+    }
+
+    componentWillUnmount() {
+        const { product } = this.state
+        this.props.updateProduct(product)
     }
 
     render() {
@@ -71,15 +86,27 @@ class Product extends React.Component {
                     <div className='col s6 box'>
                         <h4 className='center-align'>Add it to your cart</h4>
                         <div className='center-align'>
-                            <p className='flow-text'>Quantity</p>
-                            <div className='quantity center-align'>
-                                <button onClick={this.minusQty} className='btn btn-floating red'><i className="material-icons">remove</i></button>
-                                <div className='qty-box'>{quantity}</div>
-                                <button onClick={this.addQty} className='btn btn-floating red'><i className="material-icons">add</i></button>
-                            </div>
-                            <div className='center-align btn-box'>
-                                <button onClick={this.addToCart} className='btn waves-effect waves-dark red'>Add to Cart</button>
-                            </div>
+                            {
+                                this.state.product.inventory > 0
+                                ? (
+                                    <div>
+                                        <p className='flow-text'>Quantity</p>
+                                        <div className='quantity center-align'>
+                                            <button onClick={this.minusQty} className='btn btn-floating red'><i className="material-icons">remove</i></button>
+                                            <div className='qty-box'>{quantity}</div>
+                                            <button onClick={this.addQty} className='btn btn-floating red'><i className="material-icons">add</i></button>
+                                        </div>
+                                        <div className='center-align btn-box'>
+                                            <button onClick={this.addToCart} className='btn waves-effect waves-dark red'>Add to Cart</button>
+                                        </div>
+                                    </div>
+                                )
+                                : (
+                                    <div className='center-align btn-box'>
+                                        <button className="btn disabled" disabled="disabled">Out of Stock</button>
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                 </div>
@@ -90,4 +117,4 @@ class Product extends React.Component {
 
 const mapStateToProps = ({ products }) => ({ products })
 
-export default connect(mapStateToProps, { addToCart })(Product)
+export default connect(mapStateToProps, { addToCart, updateProduct, showCart })(Product)

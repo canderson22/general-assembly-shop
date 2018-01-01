@@ -9,9 +9,9 @@ productsRouter.route('/')
     .post(productsCtrl.create)
 //
 
-productsRouter.route('/:id')
+productsRouter.route('/:_id')
     .get()
-    .patch()
+    .patch(productsCtrl.update)
     .delete()
 //
 

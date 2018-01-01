@@ -1,4 +1,4 @@
-import { GET_PRODUCTS } from '../actions/products'
+import { GET_PRODUCTS, UPDATE_PRODUCT } from '../actions/products'
 
 
 // function searchProducts(state, payload) {
@@ -20,17 +20,15 @@ import { GET_PRODUCTS } from '../actions/products'
 //     return newState
 // }
 
-// function updateProducts(state, payload) {
-//     const newState = state.map(item => {
-//         if (item._id === payload._id) {
-//             if (item.inStock > 0) {
-//                 item.inStock -= payload.qty
-//             }
-//         }
-//         return item
-//     })
-//     return newState
-// }
+function updateProduct(state, payload) {
+    const newState = state.map(product => {
+        if (product._id === payload._id) {
+            product.inventory = payload.inventory
+        }
+        return product
+    })
+    return newState
+}
 
 // function putBackItems(state, payload) {
 //     const newState = state.map(item => {
@@ -50,8 +48,8 @@ export default (state=[], action) => {
         //     return searchProducts(state, action.payload)
         // case QUANTITY_CHANGE:
         //     return changeQuantity(state, action.payload)
-        // case UPDATE_PRODUCTS:
-        //     return updateProducts(state, action.payload)
+        case UPDATE_PRODUCT:
+            return updateProduct(state, action.payload)
         // case PUT_BACK_ITEMS:
         //     return putBackItems(state, action.payload)
         default:

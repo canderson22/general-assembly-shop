@@ -19,12 +19,12 @@ class Products extends Component {
     }
     
      componentDidMount() {
-         this.props.getProducts(() => {
-             this.setState({loading: false})
-         }, (error) => {
+        this.props.getProducts(() => {
+            this.setState({loading: false})
+        }, (error) => {
             this.setState({loading: true})
             toast(`<h5>${error}</h5>`, 2000, 'rounded red-text')
-         });
+        });
      }
 
      componentWillUnmount() {
