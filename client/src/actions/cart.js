@@ -14,37 +14,17 @@ export function addToCart(product, cb) {
     .then(res => {
         var productReturn = res.data.product
         productReturn.quantity = product.quantity
-        console.log(productReturn)
         return productReturn
     })
     .catch(res => console.log(res.err))
     return { type: ADD_TO_CART, payload: request }
 } 
 
-export const UPDATE_CART = 'UPDATE_CART'
-export function updateCart(product) {
-    var quantity = product.quantity
-    product.quantity = 20
-    const request = axios({
-        method: 'PATCH',
-        url: `/api/products/${product._id}`,
-        data: {
-            product
-        }
-    })
-    .then(res => {
-        var productReturn = res.data.product
-        productReturn.quantity = quantity
-        console.log(productReturn)
-        return productReturn
-    })
-    .catch(err => console.log(err))
-    return { type: UPDATE_CART, payload: request }  
-}
-
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
-export function removeFromCart(id) {
-    return { type: REMOVE_FROM_CART, payload: id}
+export function removeFromCart(product, cb) {
+    product.inventory += product.quantity
+    cb(product)
+    return { type: REMOVE_FROM_CART, payload: product._id}
 }
 
 export const CLEAR_CART = 'CLEAR_CART'

@@ -2,10 +2,18 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import { removeFromCart } from '../../actions/cart'
+import { updateProduct } from '../../actions/products'
+
 import './checkout.css'
-import Select from './Select'
 
 class Checkout extends Component {
+
+    removeFromCart(item) {
+        this.props.removeFromCart(item, (product) => {
+            this.props.updateProduct(product)
+        })
+    }
 
     render() {
         var total = 0
@@ -43,9 +51,9 @@ class Checkout extends Component {
                                             $ {item.price}
                                         </td>
                                         <td className='center-align'>
-                                            <Select item={item} />
+                                            <span>{item.quantity}</span>
                                             <br/>
-                                            <button className='btn-floating red darken-3'><i className='tiny material-icons'>delete_forever</i> </button>
+                                            <button onClick={this.removeFromCart.bind(this, item)} className='btn-floating red darken-3'><i className='tiny material-icons'>delete_forever</i> </button>
                                             <label className='remove-label'>Remove</label>
                                         </td>
                                         <td className='right-align'>
@@ -64,4 +72,4 @@ class Checkout extends Component {
 
 const mapStateToProps = ({ cart }) => ({ cart })
 
-export default connect(mapStateToProps, null)(Checkout)
+export default connect(mapStateToProps, { removeFromCart, updateProduct })(Checkout)

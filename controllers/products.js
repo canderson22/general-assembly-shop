@@ -25,15 +25,15 @@ module.exports = {
             product.title = req.body.product.title || product.title
             product.desc = req.body.product.desc || product.desc
             product.color = req.body.product.color || product.color
-            product.inventory = req.body.product.index || product.inventory
+            product.inventory = req.body.product.inventory || product.inventory
             if (req.body.product.inventory === 0) {
                 product.inventory = 0
             } 
             product.price = req.body.product.price || product.price
 
             product.save((err, product) => {
-                if (err) return res.json({err})
                 console.log(product)
+                if (err) return res.json({err})
                 res.json({product})
             })
         })
