@@ -32,7 +32,6 @@ module.exports = {
             product.price = req.body.product.price || product.price
 
             product.save((err, product) => {
-                console.log(product)
                 if (err) return res.json({err})
                 res.json({product})
             })

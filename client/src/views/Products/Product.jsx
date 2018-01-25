@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { addToCart } from '../../actions/cart'
@@ -65,8 +66,9 @@ class Product extends React.Component {
         const { product, quantity } = this.state
         return (
             <div className='Product container z-depth-5'>
+                <Link className='back-link btn btn-floating red darken-2' to='/products'><i className='material-icons'>arrow_back</i></Link>
                 <div className='row'>
-                    <div className='col s6 box'>
+                    <div className='col m6 s12 box'>
                         <div className='center-align'>
                             <img className="responsive-img hoverable" src={product.image} />
                         </div>
@@ -83,7 +85,7 @@ class Product extends React.Component {
                             </span>
                         </div>
                     </div>
-                    <div className='col s6 box'>
+                    <div className='col m6 s12 box'>
                         <h4 className='center-align'>Add it to your cart</h4>
                         <div className='center-align'>
                             {

@@ -22,3 +22,15 @@ select {
 .table-row {
     border-bottom: 1px solid rgb(218, 215, 215);
 }
+
+@media only screen and (min-width : 321px) {
+    .checkout-img {
+        display: none;
+    }
+    .dollar-sign {
+        display: none;
+    }
+    .subtotal {
+        font-size: 22px;
+    }
+}

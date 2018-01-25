@@ -3,7 +3,6 @@ import { ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART } from '../actions/cart'
 const defaultState = JSON.parse(localStorage.getItem('ga-cart')) || []
 
 function addToCart(state, newItem) {
-    console.log(newItem)
     if(state.find(item => item._id === newItem._id)) {
         var newState = state.map(item => {
             if(item._id === newItem._id) {
