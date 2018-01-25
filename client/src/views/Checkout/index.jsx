@@ -1,131 +1,75 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import StripeCheckout from 'react-stripe-checkout'
 import { connect } from 'react-redux'
-import { showCart } from '../../actions/helpers'
-import { processPayment, completeOrder, processing } from '../../actions/order'
 
-import Processing from '../Helpers/Processing'
+import { removeFromCart } from '../../actions/cart'
+import { updateProduct } from '../../actions/products'
+
 import './checkout.css'
 
-class Checkout extends React.Component {
+class Checkout extends Component {
 
-    state = {
-        orderProcess: false
-    }
-
-
-    onBack() {
-        this.props.showCart(!this.props.helpers.viewCart)
-    }
-
-    onOpened() {
-        this.setState({orderProcess: true})
-    }
-
-    onClose() {
-        this.setState({orderProcess: false})
-    }
-
-    onToken(token) {
-        const amount = this.props.cart.map(p => p.qty * p.price).reduce((total, v) => total += v) * 100
-        this.props.processPayment(token, amount, (paymentId) => {
-            const { user, cart } = this.props
-            const order = {
-                paymentId: paymentId,
-                userId: user._id,
-                items: cart
-            }
-            this.props.completeOrder(order, () => {
-                this.props.history.push('/completeOrder')
-            })
+    removeFromCart(item) {
+        this.props.removeFromCart(item, (product) => {
+            this.props.updateProduct(product)
         })
     }
 
-    componentWillUnmount() {
-        this.props.showCart(!this.props.helpers.viewCart)
-    }
-
     render() {
-        const { cart } = this.props
-        let total = 0
-        let amount = 0
-        if(cart.length > 0) {
-            total = cart.map(item => item.qty * item.price).reduce((total, value) => total += value)
-            amount = total * 100
+        var total = 0
+        if (this.props.cart) {
+            this.props.cart.forEach(item => total += (item.quantity * item.price))
+            total = total.toFixed(2)
         }
+        
         return (
-            <div className='container'>
-                {
-                    this.state.orderProcess
-                    ? (
-                        <h1>
-                            Your Order is being Processed
-                            <Processing />
-                        </h1>
-                    )
-                    : null
-                }
-                <h2 className='center-align'>Final Summary</h2>
-                <table className='checkout responsive-table striped flow-text'>
+            <div className='Checkout container'>
+                <h4>Your cart subtotal is $ {total}</h4>
+                <Link to='/'>Back</Link>
+                <table className='highlight responsive-table'>
                     <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Desc</th>
-                            <th>Color</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                        </tr>
+                    <tr>
+                        <th className='center-align'>Details</th>
+                        <th>Price</th>
+                        <th className='center-align'>Quantity</th>
+                        <th className='right-align'>Total</th>
+                    </tr>
                     </thead>
+
                     <tbody>
-                        { cart.map(item => {
-                            return (
-                                <tr key={item._id}>
-                                    <td>{item.title}</td>
-                                    <td>{item.desc}</td>
-                                    <td>{item.color}</td>
-                                    <td className='center-align'>{item.qty}</td>
-                                    <td>{item.price * item.qty}</td>
-                                </tr>
-                            )
-                        })}
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                            {
-                                total > 0
-                                ? <span>Total ${total}</span>
-                                : null
-                            }
-                            </td>
-                        </tr>
+                        {
+                            this.props.cart.map(item => {
+                                return (
+                                    <tr key={item._id} className='flow-text table-row'>
+                                        <td className='valign-wrapper'>
+                                            <img src={item.image} alt="items" className='left checkout-img'/>
+                                            <p>
+                                                {item.desc}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            $ {item.price}
+                                        </td>
+                                        <td className='center-align'>
+                                            <span>{item.quantity}</span>
+                                            <br/>
+                                            <button onClick={this.removeFromCart.bind(this, item)} className='btn-floating red darken-3'><i className='tiny material-icons'>delete_forever</i> </button>
+                                            <label className='remove-label'>Remove</label>
+                                        </td>
+                                        <td className='right-align'>
+                                            $ {(item.price * item.quantity).toFixed(2)}
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                 </table>
-                <div className='btn-group'>
-                    <Link onClick={this.onBack.bind(this)} to='/shop' className='left btn blue'>Back</Link>
-                    <StripeCheckout
-                      className='right'
-                      descritption='GA Swag'
-                      stripeKey={process.env.REACT_APP_PUBLISHABLE_KEY}
-                      amount={amount}
-                      currency='USD'
-                      token={this.onToken.bind(this)}
-                      opened={this.onOpened.bind(this)}
-                      closed={this.onClose.bind(this)}
-                    >
-                    <button className='right btn green'>Pay with Card</button>
-                    </StripeCheckout>
-                </div>
             </div>
         )
-
     }
 }
 
+const mapStateToProps = ({ cart }) => ({ cart })
 
-const mapStateToProps = ({ user, cart, helpers, order }) => ({ user, cart, helpers, order })
-
-export default connect(mapStateToProps, { showCart, processPayment, processing, completeOrder })(Checkout)
+export default connect(mapStateToProps, { removeFromCart, updateProduct })(Checkout)

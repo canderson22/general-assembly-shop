@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import { showCart } from '../../actions/helpers'
 import './navbar.css'
 import gaLogo from '../images/general-assembly-logo.png'
 
 class Navbar extends Component {
-    onInputChange(e) {
-        
+    closeCart() {
+        this.props.showCart(true)
     }
  
     render() {
@@ -15,7 +16,7 @@ class Navbar extends Component {
             <nav className='Navbar white text-black'>
                 <div className='nav-wrapper'>
                     <div className='brand-logo left'>
-                        <img src={gaLogo} alt=""/>
+                        <img src={gaLogo} alt="general assembly logo"/>
                     </div>
                     <a data-activates="mobile-demo" className="button-collapse right"><i className="material-icons">menu</i></a>
                     {
@@ -29,14 +30,11 @@ class Navbar extends Component {
                                 <li><Link to='/logout'>Log out</Link></li>
                             </ul>
                              {
-                                 this.props.helpers.viewSearch
+                                 this.props.cart.length > 0
                                  ? (
-                                    <form className='right red hide-on-med-and-down'>
-                                        <div className="input-field">
-                                        <input onChange={this.onInputChange.bind(this)} id="search" type="search" placeholder='Search for items' />
-                                        <label className="label-icon"><i className="material-icons">search</i></label>
-                                        </div>
-                                    </form>
+                                    <div className='right'>
+                                        <button onClick={this.closeCart.bind(this)} className='btn-floating btn-large red'><i className='large material-icons'>shopping_cart</i></button>
+                                    </div>
                                  )
                                 : null
                              }
@@ -63,6 +61,6 @@ class Navbar extends Component {
     }
 }
 
-const mapStateToProps = ({ user, helpers }) => ({ user, helpers })
+const mapStateToProps = ({ user, cart }) => ({ user, cart })
 
-export default connect(mapStateToProps, { })(Navbar);
+export default connect(mapStateToProps, { showCart })(Navbar);
