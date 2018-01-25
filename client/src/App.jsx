@@ -12,7 +12,8 @@ import Login from './views/Registration/Login'
 import Products from './views/Products/Products'
 import Product from './views/Products/Product'
 import Cart from './views/Helpers/cartSummary'
-// import Checkout from './views/Checkout' 
+import Checkout from './views/Checkout' 
+import CheckoutNav from './views/Nav/CheckoutNav'
 // import Order from './views/Order'
 // import Events from './views/Events'
 // import Settings from './views/Settings'
@@ -26,7 +27,11 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Nav />
+        {
+          this.props.location.pathname === '/checkout'
+          ? <CheckoutNav />
+          : <Nav />
+        }
         <Cart />
         <Switch>
           <Route path='/signup' render={(props) => {
@@ -62,14 +67,14 @@ class App extends React.Component {
             }
             return <Product {...props} />
           }} />
-          {/*<Route path='/checkout' render={(props) => {
+         <Route path='/checkout' render={(props) => {
             if(this.props.cart.length > 0) {
               return <Checkout {...props} />
             }
             return <Redirect to='/shop' />
           }} />
 
-          <Route path='/completeOrder' render={(props) => {
+           {/*<Route path='/completeOrder' render={(props) => {
               return <Order {...props} />
           }} /> */}
   

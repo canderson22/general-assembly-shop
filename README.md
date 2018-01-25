@@ -4,7 +4,6 @@
 
 ## Technologies Used
 
-- jQuery
 - Materialize CSS
 - stripe
 - React JS

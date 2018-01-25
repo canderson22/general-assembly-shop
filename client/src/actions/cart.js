@@ -1,20 +1,46 @@
 import axios from 'axios'
 
 export const ADD_TO_CART = 'ADD_TO_CART'
-export function addToCart(item, cb) {
+export function addToCart(product, cb) {
     cb()
-    var inventory = item.inventory - item.quantity
-    // axios({
-    //     method: 'PATCH',
-    //     url: `/api/products/${item._id}`,
-    //     data: {
-    //         inventory
-    //     }
-    // })
-    // .then(res => console.log('Success'))
-    // .catch(res => console.log(res.err))
-    return { type: ADD_TO_CART, payload: item }
+    product.inventory = product.inventory - product.quantity
+    const request = axios({
+        method: 'PATCH',
+        url: `/api/products/${product._id}`,
+        data: {
+            product
+        }
+    })
+    .then(res => {
+        var productReturn = res.data.product
+        productReturn.quantity = product.quantity
+        console.log(productReturn)
+        return productReturn
+    })
+    .catch(res => console.log(res.err))
+    return { type: ADD_TO_CART, payload: request }
 } 
+
+export const UPDATE_CART = 'UPDATE_CART'
+export function updateCart(product) {
+    var quantity = product.quantity
+    product.quantity = 20
+    const request = axios({
+        method: 'PATCH',
+        url: `/api/products/${product._id}`,
+        data: {
+            product
+        }
+    })
+    .then(res => {
+        var productReturn = res.data.product
+        productReturn.quantity = quantity
+        console.log(productReturn)
+        return productReturn
+    })
+    .catch(err => console.log(err))
+    return { type: UPDATE_CART, payload: request }  
+}
 
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 export function removeFromCart(id) {

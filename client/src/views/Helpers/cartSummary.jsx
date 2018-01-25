@@ -26,7 +26,7 @@ class CartSummary extends Component {
                         this.props.helpers.showCart
                         ? (
                             <ul className="cart">
-                                <li><span onClick={this.closeCart} className='material-icons right'>close</span></li>
+                                <li><i onClick={this.closeCart} className='material-icons right'>close</i></li>
                                 <li className='cart-header'>
                                     <span className='flow-text'>Your Cart</span>
                                     <hr/>
@@ -36,7 +36,7 @@ class CartSummary extends Component {
                                         return (
                                             <li key={item._id}>
                                                 <div className='flow-text item-title'>
-                                                    {item.title} {item.color}
+                                                    {item.title} {item.color} <span className='badge'>{item.quantity}</span>
                                                 </div>
                                             </li>
                                         )
@@ -46,7 +46,7 @@ class CartSummary extends Component {
                                     <hr/>
                                     <div>
                                         <button onClick={this.closeCart} className='left btn waves-effect waves-dark red darken-2'>Close</button>
-                                        <button className='right btn waves-effect waves-light red'>Checkout</button>
+                                        <Link onClick={this.closeCart} to='/checkout' className='right btn waves-effect waves-light red'>Checkout</Link>
                                     </div>
                                 </li>
                             </ul>

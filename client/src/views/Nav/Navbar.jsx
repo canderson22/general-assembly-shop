@@ -16,7 +16,7 @@ class Navbar extends Component {
             <nav className='Navbar white text-black'>
                 <div className='nav-wrapper'>
                     <div className='brand-logo left'>
-                        <img src={gaLogo} alt=""/>
+                        <img src={gaLogo} alt="general assembly logo"/>
                     </div>
                     <a data-activates="mobile-demo" className="button-collapse right"><i className="material-icons">menu</i></a>
                     {

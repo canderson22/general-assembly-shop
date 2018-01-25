@@ -21,15 +21,19 @@ module.exports = {
     update: (req, res) => {
         Product.findById(req.params._id, (err, product) => {
             if(err) return res.json({err})
-            product.image = req.body.image || product.image
-            product.title = req.body.title || product.title
-            product.desc = req.body.desc || product.desc
-            product.color = req.body.color || product.color
-            product.inventory = req.body.inventory || product.inventory
-            product.price = req.body.price || product.price
-            
+            product.image = req.body.product.image || product.image
+            product.title = req.body.product.title || product.title
+            product.desc = req.body.product.desc || product.desc
+            product.color = req.body.product.color || product.color
+            product.inventory = req.body.product.index || product.inventory
+            if (req.body.product.inventory === 0) {
+                product.inventory = 0
+            } 
+            product.price = req.body.product.price || product.price
+
             product.save((err, product) => {
                 if (err) return res.json({err})
+                console.log(product)
                 res.json({product})
             })
         })
