@@ -11,17 +11,17 @@
   "author": "Charles Anderson",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.149.0",
+    "aws-sdk": "^2.466.0",
     "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.19.0",
     "braintree": "^1.47.1",
     "dotenv": "^4.0.0",
-    "express": "^4.16.2",
-    "jsonwebtoken": "^8.1.0",
-    "mongoose": "4.10.8",
-    "morgan": "^1.9.0",
-    "node-mongo-seeds": "^2.3.1",
-    "request": "^2.83.0",
-    "stripe": "^5.3.0"
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.12",
+    "morgan": "^1.9.1",
+    "node-mongo-seeds": "^3.1.0",
+    "request": "^2.88.0",
+    "stripe": "^5.10.0"
   }
 }
