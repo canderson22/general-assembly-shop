@@ -11,7 +11,7 @@
   "author": "Charles Anderson",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.466.0",
+    "aws-sdk": "^2.814.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
     "braintree": "^1.47.1",
